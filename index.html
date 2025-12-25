@@ -623,6 +623,550 @@ const KANJI = [
       "不慣れ（ふなれ）= inexperiente"
     ]
   },
+  /* ====== BLOCO EXTRA DE KANJI (cole dentro do const KANJI = [ ... ]) ====== */
+
+  { lvl:"N4", tag:"daily", k:"決", hira:"き・める / き・まる", pt:"decidir / ficar decidido", words:[
+      {jp:"予定を決める", hira:"よてい を きめる", pt:"decidir o plano"},
+      {jp:"会議の時間が決まった", hira:"かいぎ の じかん が きまった", pt:"o horário da reunião ficou decidido"}
+    ],
+    explain:[
+      "決める (transitivo) = você decide; 決まる (intransitivo) = algo fica decidido.",
+      "No cotidiano, aparece muito em agenda, compromissos, regras."
+    ],
+    patterns:[
+      "〜を決める (decidir ~)",
+      "〜が決まる (ficar decidido)"
+    ],
+    variations:[
+      "決め直す（きめなおす）= decidir de novo",
+      "決心（けっしん）= decisão firme (mais formal)"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"予", hira:"よ (予定)", pt:"plano / previsão (em 予定)", words:[
+      {jp:"明日の予定は？", hira:"あした の よてい は？", pt:"quais são os planos de amanhã?"},
+      {jp:"予定を変更する", hira:"よてい を へんこう する", pt:"mudar os planos"}
+    ],
+    explain:[
+      "No dia a dia, 予定 é a palavra padrão pra 'plano/compromisso'.",
+      "予定がある = ter compromisso (bem comum)."
+    ],
+    patterns:[
+      "予定がある (ter compromisso)",
+      "予定を変更する (mudar planos)"
+    ],
+    variations:[
+      "予定が詰まっている = agenda lotada",
+      "予定を入れる = marcar algo"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"変", hira:"か・える / か・わる", pt:"mudar (algo) / mudar (ficar diferente)", words:[
+      {jp:"服を変える", hira:"ふく を かえる", pt:"trocar de roupa"},
+      {jp:"天気が変わった", hira:"てんき が かわった", pt:"o tempo mudou"}
+    ],
+    explain:[
+      "変える = você muda algo; 変わる = algo muda por si.",
+      "Muito usado em rotina: mudar plano, roupa, caminho, humor."
+    ],
+    patterns:[
+      "〜を変える (mudar ~)",
+      "〜が変わる (mudar)"
+    ],
+    variations:[
+      "変更（へんこう）= alteração (mais formal)",
+      "変化（へんか）= mudança/transformação"
+    ]
+  },
+
+  { lvl:"N5", tag:"daily", k:"安", hira:"やす・い", pt:"barato / tranquilo (em 安心)", words:[
+      {jp:"この店は安い", hira:"この みせ は やすい", pt:"essa loja é barata"},
+      {jp:"安心する", hira:"あんしん する", pt:"ficar tranquilo"}
+    ],
+    explain:[
+      "安い = barato. Em compostos, aparece como segurança/tranquilidade: 安心.",
+      "Bem útil pra compras e conversa do dia a dia."
+    ],
+    patterns:[
+      "〜は安い (é barato)",
+      "安心する (ficar tranquilo)"
+    ],
+    variations:[
+      "安め（やすめ）= um pouco mais barato",
+      "安全（あんぜん）= segurança (safe)"
+    ]
+  },
+
+  { lvl:"N5", tag:"daily", k:"全", hira:"ぜん / まった・く", pt:"todo / completamente", words:[
+      {jp:"全部食べた", hira:"ぜんぶ たべた", pt:"comi tudo"},
+      {jp:"全然大丈夫", hira:"ぜんぜん だいじょうぶ", pt:"tá de boa / sem problemas"}
+    ],
+    explain:[
+      "全部/全然 são extremamente frequentes no cotidiano.",
+      "全然 + negativo é padrão; no informal, '全然OK' também aparece."
+    ],
+    patterns:[
+      "全部〜 (tudo)",
+      "全然〜ない (nada / nem um pouco)"
+    ],
+    variations:[
+      "完全（かんぜん）= completo (mais formal)",
+      "全員（ぜんいん）= todo mundo"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"連", hira:"れん (連絡)", pt:"contato (em 連絡)", words:[
+      {jp:"あとで連絡します", hira:"あとで れんらく します", pt:"te aviso depois"},
+      {jp:"先に連絡しておく", hira:"さき に れんらく して おく", pt:"avisar antes"}
+    ],
+    explain:[
+      "連絡 é o verbo social padrão: avisar, entrar em contato.",
+      "No trabalho e vida prática, é uma das palavras mais usadas."
+    ],
+    patterns:[
+      "連絡する (entrar em contato)",
+      "先に〜ておく (fazer antes)"
+    ],
+    variations:[
+      "連絡先（れんらくさき）= contato",
+      "連絡が来る = receber mensagem/aviso"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"絡", hira:"から・む (連絡の絡)", pt:"relacionado / envolver (em 連絡)", words:[
+      {jp:"連絡が遅れてすみません", hira:"れんらく が おくれて すみません", pt:"desculpa o atraso no contato"},
+      {jp:"仕事に絡む話", hira:"しごと に からむ はなし", pt:"assunto ligado ao trabalho"}
+    ],
+    explain:[
+      "No N4, você vê muito em 連絡 (contato).",
+      "絡む sozinho é mais nuance: 'envolver/estar ligado'."
+    ],
+    patterns:[
+      "〜に絡む (ser ligado a ~)",
+      "連絡が遅れる (atrasar o contato)"
+    ],
+    variations:[
+      "複雑に絡む = se entrelaçar (mais avançado)",
+      "絡み（からみ）= relação/envolvimento"
+    ]
+  },
+
+  { lvl:"N5", tag:"daily", k:"早", hira:"はや・い / はや・く", pt:"cedo / rápido", words:[
+      {jp:"今日は早く帰る", hira:"きょう は はやく かえる", pt:"hoje volto cedo"},
+      {jp:"早くして", hira:"はやくして", pt:"anda logo"}
+    ],
+    explain:[
+      "早い é dual: cedo (tempo) e rápido (velocidade).",
+      "Em conversa: 早く帰る / 早く起きる são frases padrão."
+    ],
+    patterns:[
+      "早く〜する (fazer logo)",
+      "早く帰る/起きる"
+    ],
+    variations:[
+      "早めに（はやめに）= mais cedo",
+      "早起き（はやおき）= acordar cedo"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"遅", hira:"おそ・い / おく・れる", pt:"tarde / atrasar", words:[
+      {jp:"遅くなってすみません", hira:"おそく なって すみません", pt:"desculpa ter ficado tarde"},
+      {jp:"電車が遅れた", hira:"でんしゃ が おくれた", pt:"o trem atrasou"}
+    ],
+    explain:[
+      "遅い = tarde/lento; 遅れる = atrasar-se (trem, pessoa, resposta).",
+      "Muito útil em mensagens: 遅れます (vou me atrasar)."
+    ],
+    patterns:[
+      "遅れる (atrasar)",
+      "遅くなる (ficar tarde)"
+    ],
+    variations:[
+      "遅刻（ちこく）= atraso (substantivo)",
+      "遅め（おそめ）= um pouco tarde"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"忘", hira:"わす・れる", pt:"esquecer", words:[
+      {jp:"鍵を忘れた", hira:"かぎ を わすれた", pt:"esqueci a chave"},
+      {jp:"忘れないで", hira:"わすれないで", pt:"não esquece"}
+    ],
+    explain:[
+      "Extremamente comum. Em pedido: 忘れないでね (não esquece, tá?).",
+      "Também aparece em 〜を忘れてしまう (acabei esquecendo)."
+    ],
+    patterns:[
+      "〜を忘れる (esquecer ~)",
+      "忘れないで (não esqueça)"
+    ],
+    variations:[
+      "忘れ物（わすれもの）= coisa esquecida",
+      "忘年会（ぼうねんかい）= festa de fim de ano (literalmente 'esquecer o ano')"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"返", hira:"かえ・す / かえ・る", pt:"devolver / voltar", words:[
+      {jp:"本を返す", hira:"ほん を かえす", pt:"devolver o livro"},
+      {jp:"おつりを返す", hira:"おつり を かえす", pt:"devolver o troco"}
+    ],
+    explain:[
+      "返す = devolver (ação para alguém). 返る = voltar (objeto/estado).",
+      "Uso cotidiano forte em loja, biblioteca, aluguel."
+    ],
+    patterns:[
+      "〜を返す (devolver ~)",
+      "返事（へんじ）をする (responder)"
+    ],
+    variations:[
+      "返事（へんじ）= resposta",
+      "返却（へんきゃく）= devolução (formal)"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"直", hira:"なお・す / なお・る", pt:"consertar / ficar consertado; também 'na hora'", words:[
+      {jp:"スマホを直す", hira:"すまほ を なおす", pt:"consertar o celular"},
+      {jp:"すぐに直る", hira:"すぐに なおる", pt:"consertar rápido (ficar bom)"}
+    ],
+    explain:[
+      "直す (você conserta) / 直る (fica consertado / melhora).",
+      "Também aparece em 直接 (diretamente) e 直ぐ (logo)."
+    ],
+    patterns:[
+      "〜を直す (consertar ~)",
+      "〜が直る (ficar bom/consertado)"
+    ],
+    variations:[
+      "やり直す = refazer",
+      "直前（ちょくぜん）= imediatamente antes"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"置", hira:"お・く", pt:"colocar / deixar", words:[
+      {jp:"ここに置いてください", hira:"ここ に おいて ください", pt:"coloque aqui, por favor"},
+      {jp:"ちょっと置いとく", hira:"ちょっと おいとく", pt:"vou deixar aqui rapidinho"}
+    ],
+    explain:[
+      "置く = colocar/deixar (posição). Muito usado com pedidos.",
+      "No informal, 〜とく é redução de 〜ておく (estilo falado)."
+    ],
+    patterns:[
+      "〜に置く (colocar em ~)",
+      "〜ておく → 〜とく (falado)"
+    ],
+    variations:[
+      "置き場（おきば）= local para colocar",
+      "放置（ほうち）= deixar largado (formal)"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"起", hira:"お・きる / お・こす", pt:"acordar / acordar alguém", words:[
+      {jp:"朝6時に起きる", hira:"あさ 6じ に おきる", pt:"acordar às 6"},
+      {jp:"子どもを起こす", hira:"こども を おこす", pt:"acordar a criança"}
+    ],
+    explain:[
+      "起きる = acordar/levantar; 起こす = acordar alguém / causar algo.",
+      "Base de rotina: 早起き (acordar cedo)."
+    ],
+    patterns:[
+      "〜時に起きる (acordar às ~)",
+      "〜を起こす (acordar alguém)"
+    ],
+    variations:[
+      "起きられない = não consigo acordar",
+      "起床（きしょう）= acordar (formal)"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"眠", hira:"ねむ・い / ねむ・る", pt:"com sono / dormir", words:[
+      {jp:"今日は眠い", hira:"きょう は ねむい", pt:"hoje tô com sono"},
+      {jp:"眠れない", hira:"ねむれない", pt:"não consigo dormir"}
+    ],
+    explain:[
+      "眠い é a forma mais comum pra 'tô com sono'.",
+      "眠れない é muito usado em stress/ansiedade."
+    ],
+    patterns:[
+      "眠い (estar com sono)",
+      "眠れない (não conseguir dormir)"
+    ],
+    variations:[
+      "睡眠（すいみん）= sono (substantivo)",
+      "眠気（ねむけ）= sonolência"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"乗", hira:"の・る / の・せる", pt:"pegar (transporte) / colocar em cima", words:[
+      {jp:"電車に乗る", hira:"でんしゃ に のる", pt:"pegar o trem"},
+      {jp:"自転車に乗れる", hira:"じてんしゃ に のれる", pt:"consigo andar de bicicleta"}
+    ],
+    explain:[
+      "乗る é básico de transporte. N4 aparece muito em 'conseguir': 乗れる.",
+      "No Japão, isso é rotina diária (trem/ônibus)."
+    ],
+    patterns:[
+      "〜に乗る (pegar ~)",
+      "〜に乗れる (conseguir pegar/andar)"
+    ],
+    variations:[
+      "乗り換える（のりかえる）= fazer baldeação",
+      "乗り遅れる（のりおくれる）= perder o transporte"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"降", hira:"ふ・る / お・りる / お・ろす", pt:"chover / descer (transporte)", words:[
+      {jp:"雨が降る", hira:"あめ が ふる", pt:"chover"},
+      {jp:"次で降ります", hira:"つぎ で おります", pt:"desço na próxima"}
+    ],
+    explain:[
+      "降る (chover/nevar) e 降りる (descer do trem/ônibus) são cotidianos.",
+      "Muito útil em viagem e tempo."
+    ],
+    patterns:[
+      "雨が降る (chover)",
+      "〜で降りる (descer em ~)"
+    ],
+    variations:[
+      "降ろす（おろす）= fazer descer / baixar algo",
+      "降水（こうすい）= precipitação (formal)"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"旅", hira:"たび", pt:"viagem", words:[
+      {jp:"一人旅", hira:"ひとりたび", pt:"viagem sozinho"},
+      {jp:"旅に出る", hira:"たび に でる", pt:"sair em viagem"}
+    ],
+    explain:[
+      "旅 é 'viagem' com nuance mais 'jornada'.",
+      "Muito usado em placas, mídia, planos de lazer."
+    ],
+    patterns:[
+      "旅に出る (ir viajar)",
+      "一人旅 (viagem solo)"
+    ],
+    variations:[
+      "旅行（りょこう）= viagem (mais neutro)",
+      "旅先（たびさき）= destino da viagem"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"説", hira:"せつ (説明)", pt:"explicação (em 説明)", words:[
+      {jp:"説明します", hira:"せつめい します", pt:"vou explicar"},
+      {jp:"説明が必要です", hira:"せつめい が ひつよう です", pt:"é necessário explicar"}
+    ],
+    explain:[
+      "Explicar no Japão é literalmente 'fazer explicação': 説明する.",
+      "Muito usado em atendimento, escola, trabalho."
+    ],
+    patterns:[
+      "説明する (explicar)",
+      "説明が必要 (explicação é necessária)"
+    ],
+    variations:[
+      "説明書（せつめいしょ）= manual",
+      "解説（かいせつ）= comentário/explicação (mais 'didático')"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"明", hira:"あき・らか / あ・ける / あ・く", pt:"claro / abrir (dia, porta)", words:[
+      {jp:"明日", hira:"あした", pt:"amanhã"},
+      {jp:"説明が明確", hira:"せつめい が めいかく", pt:"explicação clara"}
+    ],
+    explain:[
+      "明 aparece em 明日 (amanhã) e em compostos como 明確 (claro).",
+      "Também tem sentido de 'clarear/abrir', mas no N4 o uso em palavras é o principal."
+    ],
+    patterns:[
+      "明日 (amanhã)",
+      "明確（めいかく）= claro"
+    ],
+    variations:[
+      "明るい（あかるい）= claro/alegre",
+      "明ける（あける）= amanhecer/abrir (dependendo)"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"理", hira:"り (理由)", pt:"motivo / lógica (em 理由)", words:[
+      {jp:"理由を教えてください", hira:"りゆう を おしえて ください", pt:"me diga o motivo"},
+      {jp:"理由がある", hira:"りゆう が ある", pt:"ter um motivo"}
+    ],
+    explain:[
+      "理由 é o 'motivo/razão' padrão em conversa e trabalho.",
+      "Puxa explicação racional, não emocional."
+    ],
+    patterns:[
+      "理由がある (ter motivo)",
+      "理由を言う (dizer o motivo)"
+    ],
+    variations:[
+      "理屈（りくつ）= lógica/argumento (mais coloquial)",
+      "理由なく = sem motivo"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"由", hira:"ゆ (理由)", pt:"origem/motivo (em 理由)", words:[
+      {jp:"理由", hira:"りゆう", pt:"motivo"},
+      {jp:"理由は何ですか", hira:"りゆう は なん ですか", pt:"qual é o motivo?"}
+    ],
+    explain:[
+      "Sozinho é raro no básico; aparece principalmente em 理由.",
+      "Memorize como parte do bloco 理由."
+    ],
+    patterns:[
+      "理由は〜 (o motivo é ~)",
+      "理由を説明する"
+    ],
+    variations:[
+      "経由（けいゆ）= via/por meio de",
+      "由来（ゆらい）= origem (mais avançado)"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"経", hira:"けい (経験)", pt:"experiência (em 経験)", words:[
+      {jp:"経験がある", hira:"けいけん が ある", pt:"ter experiência"},
+      {jp:"いい経験になった", hira:"いい けいけん に なった", pt:"virou uma boa experiência"}
+    ],
+    explain:[
+      "経験 é uma palavra N4 muito útil em entrevista, trabalho, vida.",
+      "〜になった = 'virou' (mudança/resultado)."
+    ],
+    patterns:[
+      "経験がある (ter experiência)",
+      "〜になった (virou / resultou)"
+    ],
+    variations:[
+      "未経験（みけいけん）= sem experiência",
+      "経験者（けいけんしゃ）= pessoa experiente"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"験", hira:"けん (経験)", pt:"experiência (parte de 経験)", words:[
+      {jp:"経験", hira:"けいけん", pt:"experiência"},
+      {jp:"経験者", hira:"けいけんしゃ", pt:"pessoa experiente"}
+    ],
+    explain:[
+      "Sozinho aparece pouco; você aprende como parte de 経験.",
+      "Guarde o bloco: 経験（けいけん）."
+    ],
+    patterns:[
+      "経験を積む（つむ）= acumular experiência",
+      "経験者募集 = vaga para experiente"
+    ],
+    variations:[
+      "体験（たいけん）= vivência/experiência (mais 'experimentar')",
+      "実験（じっけん）= experimento"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"運", hira:"うん / はこ・ぶ", pt:"sorte / transportar", words:[
+      {jp:"運がいい", hira:"うん が いい", pt:"ter sorte"},
+      {jp:"荷物を運ぶ", hira:"にもつ を はこぶ", pt:"carregar bagagem"}
+    ],
+    explain:[
+      "運 = sorte em conversa (運がいい).",
+      "運ぶ = transportar (bem usado em mudança/casa/trabalho)."
+    ],
+    patterns:[
+      "運がいい/悪い (ter sorte/azar)",
+      "〜を運ぶ (transportar ~)"
+    ],
+    variations:[
+      "運転（うんてん）= dirigir",
+      "運動（うんどう）= exercício"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"合", hira:"あ・う / あ・わせる", pt:"combinar/encontrar-se / ajustar", words:[
+      {jp:"時間が合う", hira:"じかん が あう", pt:"os horários batem"},
+      {jp:"予定を合わせる", hira:"よてい を あわせる", pt:"ajustar a agenda"}
+    ],
+    explain:[
+      "合う = bater/combinar (horário, tamanho, gosto).",
+      "合わせる = ajustar algo para combinar."
+    ],
+    patterns:[
+      "〜が合う (combinar/bater)",
+      "〜を合わせる (ajustar ~)"
+    ],
+    variations:[
+      "待ち合わせ（まちあわせ）= encontro marcado",
+      "合格（ごうかく）= aprovação (passar)"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"申", hira:"もう・す", pt:"dizer (formal) / solicitar", words:[
+      {jp:"申し訳ありません", hira:"もうしわけ ありません", pt:"sinto muito (bem formal)"},
+      {jp:"申し込みます", hira:"もうしこみます", pt:"vou me inscrever"}
+    ],
+    explain:[
+      "申す é 'dizer' formal. Aparece em expressões prontas de atendimento.",
+      "申し訳ありません é fórmula padrão de desculpa forte."
+    ],
+    patterns:[
+      "申し訳ありません (desculpa formal)",
+      "申し込む (inscrever-se)"
+    ],
+    variations:[
+      "申請（しんせい）= solicitação (formal)",
+      "申告（しんこく）= declaração (formal)"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"込", hira:"こ・む / こ・める", pt:"estar lotado / colocar dentro", words:[
+      {jp:"電車が混みます", hira:"でんしゃ が こみます", pt:"o trem fica lotado"},
+      {jp:"申し込む", hira:"もうしこむ", pt:"inscrever-se"}
+    ],
+    explain:[
+      "No dia a dia, 'lotado' é 混む (こむ) — mesma leitura, kanji diferente (混).",
+      "込 aparece muito em 申し込む (inscrever)."
+    ],
+    patterns:[
+      "申し込む (inscrever-se)",
+      "混む（こむ）= lotar (kanji comum: 混)"
+    ],
+    variations:[
+      "混雑（こんざつ）= lotação (formal)",
+      "込める（こめる）= colocar/infundir (mais avançado)"
+    ]
+  },
+
+  { lvl:"N4", tag:"daily", k:"受", hira:"う・ける / う・かる", pt:"receber (aula/exame) / passar", words:[
+      {jp:"授業を受ける", hira:"じゅぎょう を うける", pt:"assistir aula"},
+      {jp:"試験に受かる", hira:"しけん に うかる", pt:"passar na prova"}
+    ],
+    explain:[
+      "受ける = receber (serviço, aula, exame).",
+      "受かる = passar (prova/seleção)."
+    ],
+    patterns:[
+      "〜を受ける (receber/assistir ~)",
+      "〜に受かる (passar em ~)"
+    ],
+    variations:[
+      "受付（うけつけ）= recepção/balcão",
+      "受験（じゅけん）= prestar exame"
+    ]
+  },
+
+  { lvl:"N4", tag:"work", k:"付", hira:"つ・ける / つ・く", pt:"anexar/colocar / ficar anexado", words:[
+      {jp:"名前を付ける", hira:"なまえ を つける", pt:"dar um nome"},
+      {jp:"気を付けて", hira:"きを つけて", pt:"cuidado"}
+    ],
+    explain:[
+      "付ける/付く = colocar/colar/anexar — aparece em muita coisa.",
+      "Frase fixa diária: 気を付けて (se cuida / cuidado)."
+    ],
+    patterns:[
+      "〜を付ける (colocar/dar ~)",
+      "気を付ける (prestar atenção)"
+    ],
+    variations:[
+      "付き合う（つきあう）= se relacionar/acompanhar",
+      "付近（ふきん）= proximidades"
+    ]
+  },
+
+/* ====== FIM DO BLOCO EXTRA ====== */
+
 ];
 
 const PHRASES = [
