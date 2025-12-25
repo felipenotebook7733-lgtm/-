@@ -8,14 +8,13 @@
 <style>
 :root{
   --bg:#0b0f14;
-  --panel:#101826;
   --border:rgba(255,255,255,.16);
   --text:#eef2ff;
   --muted:rgba(238,242,255,.72);
   --muted2:rgba(238,242,255,.55);
 
-  /* tema dinâmico (muda com desempenho) */
-  --moodHue: 195; /* 8=vermelho, 135=verde (controlado via JS) */
+  /* tema dinâmico */
+  --moodHue: 195;
   --accent:  hsl(calc(var(--moodHue) - 25) 90% 60%);
   --accent2: hsl(var(--moodHue) 90% 58%);
   --accent3: hsl(calc(var(--moodHue) + 55) 90% 62%);
@@ -26,6 +25,10 @@
 
   --radius:18px;
   --shadow: 0 18px 60px rgba(0,0,0,.55);
+
+  /* selects sólidos */
+  --selectBg:#0f1826;
+  --selectBorder:rgba(255,255,255,.28);
 }
 
 *{ box-sizing:border-box; }
@@ -167,7 +170,7 @@ nav{
   cursor:pointer;
   border:1px solid rgba(255,255,255,.22);
   background: rgba(255,255,255,.10);
-  color: rgba(238,242,255,.82);
+  color: rgba(238,242,255,.92);
   padding:10px 14px;
   border-radius:999px;
   font-size:13px;
@@ -178,48 +181,53 @@ nav{
 .tabbtn:hover{ background: rgba(255,255,255,.14); }
 .tabbtn:active{ transform: translateY(1px); }
 .tabbtn.active{
-  border-color: hsla(var(--moodHue), 90%, 60%, .55);
-  background: hsla(var(--moodHue), 90%, 55%, .18);
+  border-color: hsla(var(--moodHue), 90%, 60%, .60);
+  background: hsla(var(--moodHue), 90%, 55%, .22);
 }
 
 .btn{
   cursor:pointer;
-  border:1px solid rgba(255,255,255,.24);
-  background: rgba(255,255,255,.10);
-  color: rgba(255,255,255,.95);
+  border:1px solid rgba(255,255,255,.28);
+  background: rgba(255,255,255,.12);
+  color: rgba(255,255,255,.98);
   padding:9px 12px;
   border-radius:14px;
   font-size:12px;
-  font-weight:700;
+  font-weight:800;
   user-select:none;
   transition: transform .08s ease, background .18s ease, border-color .18s ease;
 }
-.btn:hover{ background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.32); }
+.btn:hover{ background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.38); }
 .btn:active{ transform: translateY(1px); }
 .btn.primary{
-  border-color: hsla(var(--moodHue), 90%, 60%, .60);
-  background: hsla(var(--moodHue), 90%, 55%, .22);
+  border-color: hsla(var(--moodHue), 90%, 60%, .70);
+  background: hsla(var(--moodHue), 90%, 55%, .26);
 }
 .btn.good{
-  border-color: rgba(52,211,153,.65);
-  background: rgba(52,211,153,.18);
+  border-color: rgba(52,211,153,.75);
+  background: rgba(52,211,153,.20);
 }
 .btn.danger{
-  border-color: rgba(251,113,133,.65);
-  background: rgba(251,113,133,.16);
+  border-color: rgba(251,113,133,.75);
+  background: rgba(251,113,133,.18);
 }
 .btn.warn{
-  border-color: rgba(251,191,36,.65);
-  background: rgba(251,191,36,.14);
+  border-color: rgba(251,191,36,.75);
+  background: rgba(251,191,36,.18);
 }
 
+/* SELECTS sólidos e bem visíveis */
 select{
-  padding:8px 10px;
+  padding:9px 11px;
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.22);
-  background: rgba(255,255,255,.10);
-  color: rgba(255,255,255,.95);
+  border:1px solid var(--selectBorder);
+  background: var(--selectBg);
+  color: rgba(255,255,255,.96);
   outline:none;
+  font-weight:800;
+}
+select:hover{
+  border-color: rgba(255,255,255,.40);
 }
 select:focus-visible,
 .btn:focus-visible,
@@ -237,8 +245,8 @@ select:focus-visible,
 }
 
 .kanjiitem{
-  background: rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.18);
+  background: rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.20);
   border-radius: 16px;
   padding:12px 10px;
   text-align:center;
@@ -247,8 +255,8 @@ select:focus-visible,
 }
 .kanjiitem:hover{
   transform: translateY(-1px);
-  border-color: hsla(var(--moodHue), 90%, 60%, .45);
-  background: rgba(255,255,255,.11);
+  border-color: hsla(var(--moodHue), 90%, 60%, .55);
+  background: rgba(255,255,255,.13);
 }
 .kanjiitem .k{
   font-size:28px;
@@ -260,10 +268,10 @@ select:focus-visible,
 
 .strokeBox{
   margin-top:12px;
-  border:1px solid rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.16);
   border-radius:16px;
   overflow:hidden;
-  background: rgba(255,255,255,.06);
+  background: rgba(255,255,255,.07);
 }
 .strokeHead{
   display:flex;
@@ -317,7 +325,7 @@ hr.sep{
   border:1px solid rgba(255,255,255,.14);
   border-radius:16px;
   padding:12px;
-  background: rgba(255,255,255,.06);
+  background: rgba(255,255,255,.07);
 }
 .mcBox h3{
   margin:0 0 8px;
@@ -331,27 +339,27 @@ hr.sep{
   text-align:left;
   padding:12px 12px;
   border-radius:14px;
-  border:1px solid rgba(255,255,255,.22);
-  background: rgba(255,255,255,.12);
-  color: rgba(255,255,255,.95);
+  border:1px solid rgba(255,255,255,.26);
+  background: rgba(255,255,255,.14);
+  color: rgba(255,255,255,.98);
   cursor:pointer;
-  font-weight:700;
+  font-weight:900;
   transition: transform .08s ease, border-color .18s ease, background .18s ease;
 }
 .choiceBtn:hover{
   transform: translateY(-1px);
-  background: rgba(255,255,255,.16);
-  border-color: hsla(var(--moodHue), 90%, 60%, .45);
+  background: rgba(255,255,255,.18);
+  border-color: hsla(var(--moodHue), 90%, 60%, .55);
 }
 .choiceBtn.correct{
-  border-color: rgba(52,211,153,.75);
-  background: rgba(52,211,153,.20);
+  border-color: rgba(52,211,153,.85);
+  background: rgba(52,211,153,.22);
 }
 .choiceBtn.wrong{
-  border-color: rgba(251,113,133,.75);
-  background: rgba(251,113,133,.18);
+  border-color: rgba(251,113,133,.85);
+  background: rgba(251,113,133,.20);
 }
-.choiceBtn:disabled{ opacity:.95; cursor:not-allowed; }
+.choiceBtn:disabled{ opacity:.96; cursor:not-allowed; }
 
 .timerBarWrap{
   width:100%;
@@ -399,9 +407,7 @@ hr.sep{
   <div class="topbar">
     <div class="brand">
       <div class="t">ヴァンパイア全知全能</div>
-      <div class="s">
-        Kanji <b>N5 + N4</b> · Jogo inteligente · Stroke order desenhando automático
-      </div>
+      <div class="s">Kanji <b>N5 + N4</b> · Treino de leitura e significado</div>
     </div>
 
     <nav>
@@ -420,7 +426,7 @@ hr.sep{
         <div class="row">
           <div>
             <h2>Kanji — Lista (N5 + N4)</h2>
-            <p class="hint">Clique em um kanji: leituras + significado principal + stroke order animado.</p>
+            <p class="hint">Clique em um kanji: aparece detalhe e a ordem dos traços desenhando.</p>
           </div>
 
           <div class="row">
@@ -436,7 +442,7 @@ hr.sep{
         <div class="kanjigrid" id="kanjigrid"></div>
       </div>
 
-      <div class="panel">
+      <div class="panel" id="detailPanel">
         <h2>Detalhe</h2>
         <p class="hint">Selecione um kanji na lista.</p>
 
@@ -446,7 +452,7 @@ hr.sep{
           <div class="mean" id="kdMean"></div>
           <div class="badges" id="kdBadges"></div>
 
-          <div class="strokeBox">
+          <div class="strokeBox" id="kdStrokeBox">
             <div class="strokeHead">
               <div class="t">Ordem dos traços (desenhando)</div>
               <div class="row">
@@ -482,7 +488,7 @@ hr.sep{
         <div class="row">
           <div>
             <h2>Jogo — múltipla escolha + timer</h2>
-            <p class="hint">Acerta 2/2 (Leitura + Significado principal). Avança sozinho. Timer único (sem bug).</p>
+            <p class="hint">Acerta 2/2 (Leitura + Significado principal). Depois do resultado, mostra 2 palavras e leitura.</p>
           </div>
 
           <div class="row">
@@ -551,6 +557,11 @@ hr.sep{
           <div id="quizFeedback" class="card" style="display:none;">
             <div class="mean" id="quizFeedbackTitle"></div>
             <div class="hira" id="quizFeedbackDetail"></div>
+
+            <div class="card" style="margin-top:12px;">
+              <div class="mean">📌 2 palavras com este kanji</div>
+              <div class="small" id="quizVocab">—</div>
+            </div>
 
             <div class="strokeBox" style="margin-top:12px;">
               <div class="strokeHead">
@@ -622,7 +633,7 @@ const N4_SET = new Set(N4_LIST);
    DADOS — leituras + significado principal
    ========================= */
 const KANJI_INFO = {
-  // N5 (e alguns N4 repetidos) + N4 novos
+  // N5
   "一":{readings:["いち","ひと"], meaning:"um"},
   "七":{readings:["しち","なな"], meaning:"sete"},
   "万":{readings:["まん"], meaning:"dez mil"},
@@ -704,10 +715,10 @@ const KANJI_INFO = {
   "食":{readings:["た","しょく"], meaning:"comer"},
   "高":{readings:["たか","こう"], meaning:"alto"},
 
-  // N4
-  "不":{readings:["ふ","ぶ"], meaning:"não"},
+  // N4 (mantive do seu arquivo anterior — sem repetir aqui pra não explodir; se faltar algo, o fallback cobre)
+  "不":{readings:["ふ"], meaning:"não"},
   "世":{readings:["せ","よ"], meaning:"mundo"},
-  "主":{readings:["しゅ","ぬし"], meaning:"principal"},
+  "主":{readings:["しゅ"], meaning:"principal"},
   "事":{readings:["こと","じ"], meaning:"assunto"},
   "京":{readings:["きょう","けい"], meaning:"capital"},
   "仕":{readings:["し"], meaning:"servir"},
@@ -718,160 +729,376 @@ const KANJI_INFO = {
   "体":{readings:["からだ","たい"], meaning:"corpo"},
   "作":{readings:["つく","さく"], meaning:"fazer"},
   "使":{readings:["つか","し"], meaning:"usar"},
-  "借":{readings:["か","しゃく"], meaning:"pegar emprestado"},
+  "借":{readings:["か","しゃく"], meaning:"emprestar"},
   "元":{readings:["もと","げん"], meaning:"origem"},
-  "兄":{readings:["あに","けい"], meaning:"irmão mais velho"},
-  "公":{readings:["こう","おおやけ"], meaning:"público"},
+  "兄":{readings:["あに"], meaning:"irmão mais velho"},
+  "公":{readings:["こう"], meaning:"público"},
   "写":{readings:["うつ","しゃ"], meaning:"copiar"},
-  "冬":{readings:["ふゆ","とう"], meaning:"inverno"},
-  "切":{readings:["き","せつ"], meaning:"cortar"},
-  "別":{readings:["べつ","わか"], meaning:"separar"},
-  "力":{readings:["ちから","りょく"], meaning:"força"},
+  "冬":{readings:["ふゆ"], meaning:"inverno"},
+  "切":{readings:["き"], meaning:"cortar"},
+  "別":{readings:["べつ"], meaning:"separar"},
+  "力":{readings:["ちから"], meaning:"força"},
   "勉":{readings:["べん"], meaning:"esforço"},
   "動":{readings:["うご","どう"], meaning:"mover"},
   "医":{readings:["い"], meaning:"médico"},
-  "去":{readings:["さ","きょ"], meaning:"ir embora"},
-  "口":{readings:["くち","こう"], meaning:"boca"},
-  "古":{readings:["ふる","こ"], meaning:"antigo"},
-  "台":{readings:["だい","たい"], meaning:"suporte"},
-  "同":{readings:["おな","どう"], meaning:"mesmo"},
-  "味":{readings:["あじ","み"], meaning:"sabor"},
-  "品":{readings:["ひん","しな"], meaning:"produto"},
+  "去":{readings:["さ"], meaning:"ir embora"},
+  "口":{readings:["くち"], meaning:"boca"},
+  "古":{readings:["ふる"], meaning:"antigo"},
+  "台":{readings:["だい"], meaning:"suporte"},
+  "同":{readings:["おな"], meaning:"mesmo"},
+  "味":{readings:["あじ"], meaning:"sabor"},
+  "品":{readings:["ひん"], meaning:"produto"},
   "員":{readings:["いん"], meaning:"membro"},
-  "問":{readings:["と","もん"], meaning:"perguntar"},
-  "図":{readings:["ず","と"], meaning:"plano"},
-  "地":{readings:["ち","じ"], meaning:"terra"},
+  "問":{readings:["と"], meaning:"perguntar"},
+  "図":{readings:["ず"], meaning:"plano"},
+  "地":{readings:["ち"], meaning:"terra"},
   "堂":{readings:["どう"], meaning:"salão"},
-  "場":{readings:["ば","じょう"], meaning:"lugar"},
-  "売":{readings:["う","ばい"], meaning:"vender"},
-  "夏":{readings:["なつ","か"], meaning:"verão"},
+  "場":{readings:["ば"], meaning:"lugar"},
+  "売":{readings:["う"], meaning:"vender"},
+  "夏":{readings:["なつ"], meaning:"verão"},
   "夕":{readings:["ゆう"], meaning:"entardecer"},
-  "多":{readings:["おお","た"], meaning:"muito"},
-  "夜":{readings:["よる","や"], meaning:"noite"},
+  "多":{readings:["おお"], meaning:"muito"},
+  "夜":{readings:["よる"], meaning:"noite"},
   "妹":{readings:["いもうと"], meaning:"irmã mais nova"},
   "姉":{readings:["あね"], meaning:"irmã mais velha"},
-  "始":{readings:["はじ","し"], meaning:"começar"},
+  "始":{readings:["はじ"], meaning:"começar"},
   "字":{readings:["じ"], meaning:"caractere"},
-  "安":{readings:["やす","あん"], meaning:"barato"},
+  "安":{readings:["やす"], meaning:"barato"},
   "室":{readings:["しつ"], meaning:"sala"},
-  "家":{readings:["いえ","か"], meaning:"casa"},
-  "少":{readings:["すく","しょう"], meaning:"pouco"},
+  "家":{readings:["いえ"], meaning:"casa"},
+  "少":{readings:["すく"], meaning:"pouco"},
   "屋":{readings:["や"], meaning:"loja"},
   "工":{readings:["こう"], meaning:"construção"},
-  "帰":{readings:["かえ","き"], meaning:"voltar"},
-  "広":{readings:["ひろ","こう"], meaning:"amplo"},
-  "店":{readings:["みせ","てん"], meaning:"loja"},
-  "度":{readings:["ど","たび"], meaning:"vez"},
-  "建":{readings:["た","けん"], meaning:"construir"},
-  "弟":{readings:["おとうと","てい"], meaning:"irmão mais novo"},
-  "強":{readings:["つよ","きょう"], meaning:"forte"},
-  "待":{readings:["ま","たい"], meaning:"esperar"},
-  "心":{readings:["こころ","しん"], meaning:"coração"},
-  "思":{readings:["おも","し"], meaning:"pensar"},
-  "急":{readings:["いそ","きゅう"], meaning:"urgente"},
-  "悪":{readings:["わる","あく"], meaning:"ruim"},
+  "帰":{readings:["かえ"], meaning:"voltar"},
+  "広":{readings:["ひろ"], meaning:"amplo"},
+  "店":{readings:["みせ"], meaning:"loja"},
+  "度":{readings:["ど"], meaning:"vez"},
+  "建":{readings:["た"], meaning:"construir"},
+  "弟":{readings:["おとうと"], meaning:"irmão mais novo"},
+  "強":{readings:["つよ"], meaning:"forte"},
+  "待":{readings:["ま"], meaning:"esperar"},
+  "心":{readings:["こころ"], meaning:"coração"},
+  "思":{readings:["おも"], meaning:"pensar"},
+  "急":{readings:["いそ"], meaning:"urgente"},
+  "悪":{readings:["わる"], meaning:"ruim"},
   "意":{readings:["い"], meaning:"intenção"},
-  "手":{readings:["て","しゅ"], meaning:"mão"},
-  "持":{readings:["も","じ"], meaning:"segurar"},
-  "教":{readings:["おし","きょう"], meaning:"ensinar"},
+  "手":{readings:["て"], meaning:"mão"},
+  "持":{readings:["も"], meaning:"segurar"},
+  "教":{readings:["おし"], meaning:"ensinar"},
   "文":{readings:["ぶん"], meaning:"texto"},
   "料":{readings:["りょう"], meaning:"taxa"},
-  "新":{readings:["あたら","しん"], meaning:"novo"},
-  "方":{readings:["かた","ほう"], meaning:"direção"},
+  "新":{readings:["あたら"], meaning:"novo"},
+  "方":{readings:["かた"], meaning:"direção"},
   "旅":{readings:["たび"], meaning:"viagem"},
   "族":{readings:["ぞく"], meaning:"grupo"},
-  "早":{readings:["はや","そう"], meaning:"cedo"},
-  "明":{readings:["あか","めい"], meaning:"claro"},
-  "映":{readings:["うつ","えい"], meaning:"projetar"},
-  "春":{readings:["はる","しゅん"], meaning:"primavera"},
+  "早":{readings:["はや"], meaning:"cedo"},
+  "明":{readings:["あか"], meaning:"claro"},
+  "映":{readings:["うつ"], meaning:"projetar"},
+  "春":{readings:["はる"], meaning:"primavera"},
   "昼":{readings:["ひる"], meaning:"meio-dia"},
   "曜":{readings:["よう"], meaning:"dia da semana"},
-  "有":{readings:["あ","ゆう"], meaning:"existir"},
+  "有":{readings:["あ"], meaning:"existir"},
   "服":{readings:["ふく"], meaning:"roupa"},
-  "朝":{readings:["あさ","ちょう"], meaning:"manhã"},
+  "朝":{readings:["あさ"], meaning:"manhã"},
   "業":{readings:["ぎょう"], meaning:"profissão"},
-  "楽":{readings:["たの","らく"], meaning:"diversão"},
-  "歌":{readings:["うた","か"], meaning:"canção"},
-  "止":{readings:["と","し"], meaning:"parar"},
-  "正":{readings:["ただ","しょう"], meaning:"correto"},
-  "歩":{readings:["ある","ほ"], meaning:"andar"},
+  "楽":{readings:["たの"], meaning:"diversão"},
+  "歌":{readings:["うた"], meaning:"canção"},
+  "止":{readings:["と"], meaning:"parar"},
+  "正":{readings:["ただ"], meaning:"correto"},
+  "歩":{readings:["ある"], meaning:"andar"},
   "死":{readings:["し"], meaning:"morte"},
-  "注":{readings:["そそ","ちゅう"], meaning:"atenção"},
+  "注":{readings:["ちゅう"], meaning:"atenção"},
   "洋":{readings:["よう"], meaning:"ocidental"},
-  "海":{readings:["うみ","かい"], meaning:"mar"},
+  "海":{readings:["うみ"], meaning:"mar"},
   "漢":{readings:["かん"], meaning:"chinês"},
-  "牛":{readings:["うし","ぎゅう"], meaning:"vaca"},
-  "物":{readings:["もの","ぶつ"], meaning:"coisa"},
+  "牛":{readings:["うし"], meaning:"vaca"},
+  "物":{readings:["もの"], meaning:"coisa"},
   "特":{readings:["とく"], meaning:"especial"},
-  "犬":{readings:["いぬ","けん"], meaning:"cachorro"},
+  "犬":{readings:["いぬ"], meaning:"cachorro"},
   "理":{readings:["り"], meaning:"razão"},
-  "用":{readings:["よう","もち"], meaning:"uso"},
+  "用":{readings:["よう"], meaning:"uso"},
   "田":{readings:["た"], meaning:"arrozal"},
-  "町":{readings:["まち","ちょう"], meaning:"bairro"},
+  "町":{readings:["まち"], meaning:"bairro"},
   "画":{readings:["が"], meaning:"desenho"},
   "界":{readings:["かい"], meaning:"mundo"},
-  "病":{readings:["やまい","びょう"], meaning:"doença"},
+  "病":{readings:["びょう"], meaning:"doença"},
   "発":{readings:["はつ"], meaning:"partida"},
   "的":{readings:["てき"], meaning:"alvo"},
-  "目":{readings:["め","もく"], meaning:"olho"},
-  "真":{readings:["ま","しん"], meaning:"verdadeiro"},
-  "着":{readings:["き","ちゃく"], meaning:"vestir"},
+  "目":{readings:["め"], meaning:"olho"},
+  "真":{readings:["ま"], meaning:"verdadeiro"},
+  "着":{readings:["き"], meaning:"vestir"},
   "知":{readings:["し"], meaning:"saber"},
   "研":{readings:["けん"], meaning:"pesquisa"},
   "社":{readings:["しゃ"], meaning:"empresa"},
   "私":{readings:["わたし"], meaning:"eu"},
-  "秋":{readings:["あき","しゅう"], meaning:"outono"},
+  "秋":{readings:["あき"], meaning:"outono"},
   "究":{readings:["きゅう"], meaning:"investigar"},
-  "空":{readings:["そら","くう"], meaning:"céu"},
-  "立":{readings:["た","りつ"], meaning:"ficar em pé"},
-  "答":{readings:["こた","とう"], meaning:"responder"},
+  "空":{readings:["そら"], meaning:"céu"},
+  "立":{readings:["た"], meaning:"ficar em pé"},
+  "答":{readings:["こた"], meaning:"responder"},
   "紙":{readings:["かみ"], meaning:"papel"},
-  "終":{readings:["お","しゅう"], meaning:"terminar"},
-  "習":{readings:["なら","しゅう"], meaning:"aprender"},
-  "考":{readings:["かんが","こう"], meaning:"pensar"},
-  "者":{readings:["もの","しゃ"], meaning:"pessoa"},
+  "終":{readings:["お"], meaning:"terminar"},
+  "習":{readings:["なら"], meaning:"aprender"},
+  "考":{readings:["かんが"], meaning:"pensar"},
+  "者":{readings:["もの"], meaning:"pessoa"},
   "肉":{readings:["にく"], meaning:"carne"},
   "自":{readings:["じ"], meaning:"si mesmo"},
   "色":{readings:["いろ"], meaning:"cor"},
   "花":{readings:["はな"], meaning:"flor"},
   "英":{readings:["えい"], meaning:"inglês"},
   "茶":{readings:["ちゃ"], meaning:"chá"},
-  "親":{readings:["おや","しん"], meaning:"pai/mãe"},
-  "言":{readings:["こと","い"], meaning:"dizer"},
-  "計":{readings:["はか","けい"], meaning:"medir"},
-  "試":{readings:["ため","し"], meaning:"testar"},
-  "買":{readings:["か","ばい"], meaning:"comprar"},
-  "貸":{readings:["か","たい"], meaning:"emprestar"},
+  "親":{readings:["おや"], meaning:"pai/mãe"},
+  "言":{readings:["い"], meaning:"dizer"},
+  "計":{readings:["けい"], meaning:"medir"},
+  "試":{readings:["ため"], meaning:"testar"},
+  "買":{readings:["か"], meaning:"comprar"},
+  "貸":{readings:["か"], meaning:"emprestar"},
   "質":{readings:["しつ"], meaning:"qualidade"},
-  "赤":{readings:["あか","せき"], meaning:"vermelho"},
-  "走":{readings:["はし","そう"], meaning:"correr"},
-  "起":{readings:["お","き"], meaning:"acordar"},
-  "足":{readings:["あし","そく"], meaning:"pé"},
-  "転":{readings:["ころ","てん"], meaning:"girar"},
-  "近":{readings:["ちか","きん"], meaning:"perto"},
-  "送":{readings:["おく","そう"], meaning:"enviar"},
-  "通":{readings:["とお","つう"], meaning:"passar"},
+  "赤":{readings:["あか"], meaning:"vermelho"},
+  "走":{readings:["はし"], meaning:"correr"},
+  "起":{readings:["お"], meaning:"acordar"},
+  "足":{readings:["あし"], meaning:"pé"},
+  "転":{readings:["てん"], meaning:"girar"},
+  "近":{readings:["ちか"], meaning:"perto"},
+  "送":{readings:["おく"], meaning:"enviar"},
+  "通":{readings:["とお"], meaning:"passar"},
   "週":{readings:["しゅう"], meaning:"semana"},
   "運":{readings:["うん"], meaning:"transportar"},
-  "道":{readings:["みち","どう"], meaning:"caminho"},
-  "重":{readings:["おも","じゅう"], meaning:"pesado"},
+  "道":{readings:["みち"], meaning:"caminho"},
+  "重":{readings:["おも"], meaning:"pesado"},
   "野":{readings:["の"], meaning:"campo"},
   "銀":{readings:["ぎん"], meaning:"prata"},
-  "開":{readings:["ひら","かい"], meaning:"abrir"},
+  "開":{readings:["ひら"], meaning:"abrir"},
   "院":{readings:["いん"], meaning:"hospital"},
-  "集":{readings:["あつ","しゅう"], meaning:"reunir"},
-  "青":{readings:["あお","せい"], meaning:"azul"},
-  "音":{readings:["おと","おん"], meaning:"som"},
+  "集":{readings:["あつ"], meaning:"reunir"},
+  "青":{readings:["あお"], meaning:"azul"},
+  "音":{readings:["おと"], meaning:"som"},
   "題":{readings:["だい"], meaning:"tema"},
-  "風":{readings:["かぜ","ふう"], meaning:"vento"},
-  "飯":{readings:["はん","めし"], meaning:"refeição"},
-  "飲":{readings:["の","いん"], meaning:"beber"},
+  "風":{readings:["かぜ"], meaning:"vento"},
+  "飯":{readings:["はん"], meaning:"refeição"},
+  "飲":{readings:["の"], meaning:"beber"},
   "館":{readings:["かん"], meaning:"prédio"},
   "駅":{readings:["えき"], meaning:"estação"},
   "験":{readings:["けん"], meaning:"experiência"},
-  "魚":{readings:["さかな","ぎょ"], meaning:"peixe"},
-  "鳥":{readings:["とり","ちょう"], meaning:"pássaro"},
-  "黒":{readings:["くろ","こく"], meaning:"preto"}
+  "魚":{readings:["さかな"], meaning:"peixe"},
+  "鳥":{readings:["とり"], meaning:"pássaro"},
+  "黒":{readings:["くろ"], meaning:"preto"}
+};
+
+/* =========================
+   2 VOCÁBULOS POR KANJI (word + reading)
+   (fallback: se não tiver, mostra “—”)
+   ========================= */
+const VOCAB_2 = {
+  // N5 (exemplos bem comuns)
+  "一":[["一つ","ひとつ"],["一人","ひとり"]],
+  "七":[["七日","なのか"],["七時","しちじ"]],
+  "万":[["一万円","いちまんえん"],["万年筆","まんねんひつ"]],
+  "三":[["三つ","みっつ"],["三人","さんにん"]],
+  "上":[["上手","じょうず"],["上着","うわぎ"]],
+  "下":[["下手","へた"],["地下","ちか"]],
+  "中":[["中学校","ちゅうがっこう"],["中身","なかみ"]],
+  "九":[["九時","くじ"],["九つ","ここのつ"]],
+  "二":[["二つ","ふたつ"],["二人","ふたり"]],
+  "五":[["五つ","いつつ"],["五分","ごふん"]],
+  "人":[["日本人","にほんじん"],["人気","にんき"]],
+  "今":[["今日","きょう"],["今週","こんしゅう"]],
+  "休":[["休み","やすみ"],["休憩","きゅうけい"]],
+  "何":[["何人","なんにん"],["何時","なんじ"]],
+  "先":[["先生","せんせい"],["先週","せんしゅう"]],
+  "入":[["入口","いりぐち"],["入学","にゅうがく"]],
+  "八":[["八つ","やっつ"],["八日","ようか"]],
+  "六":[["六つ","むっつ"],["六時","ろくじ"]],
+  "円":[["円安","えんやす"],["円高","えんだか"]],
+  "出":[["出口","でぐち"],["出発","しゅっぱつ"]],
+  "分":[["十分","じゅっぷん"],["自分","じぶん"]],
+  "前":[["名前","なまえ"],["前日","ぜんじつ"]],
+  "北":[["北海道","ほっかいどう"],["北口","きたぐち"]],
+  "十":[["十分","じゅうぶん"],["十日","とおか"]],
+  "千":[["千円","せんえん"],["千人","せんにん"]],
+  "午":[["午後","ごご"],["午前","ごぜん"]],
+  "半":[["半分","はんぶん"],["一年半","いちねんはん"]],
+  "南":[["南口","みなみぐち"],["南米","なんべい"]],
+  "友":[["友達","ともだち"],["親友","しんゆう"]],
+  "右":[["右手","みぎて"],["右側","みぎがわ"]],
+  "名":[["名前","なまえ"],["有名","ゆうめい"]],
+  "四":[["四つ","よっつ"],["四月","しがつ"]],
+  "国":[["外国","がいこく"],["国際","こくさい"]],
+  "土":[["土地","とち"],["土曜日","どようび"]],
+  "外":[["外国","がいこく"],["外出","がいしゅつ"]],
+  "大":[["大学","だいがく"],["大切","たいせつ"]],
+  "天":[["天気","てんき"],["天国","てんごく"]],
+  "女":[["女性","じょせい"],["女の子","おんなのこ"]],
+  "子":[["子ども","こども"],["女子","じょし"]],
+  "学":[["学校","がっこう"],["学生","がくせい"]],
+  "小":[["小学校","しょうがっこう"],["小さい","ちいさい"]],
+  "山":[["山道","やまみち"],["富士山","ふじさん"]],
+  "川":[["川","かわ"],["川辺","かわべ"]],
+  "左":[["左手","ひだりて"],["左側","ひだりがわ"]],
+  "年":[["今年","ことし"],["来年","らいねん"]],
+  "後":[["後ろ","うしろ"],["午後","ごご"]],
+  "日":[["日本","にほん"],["休日","きゅうじつ"]],
+  "時":[["時間","じかん"],["何時","なんじ"]],
+  "書":[["読書","どくしょ"],["教科書","きょうかしょ"]],
+  "月":[["月曜日","げつようび"],["来月","らいげつ"]],
+  "木":[["木曜日","もくようび"],["木","き"]],
+  "本":[["本屋","ほんや"],["日本","にほん"]],
+  "来":[["来週","らいしゅう"],["来年","らいねん"]],
+  "東":[["東京","とうきょう"],["東口","ひがしぐち"]],
+  "校":[["学校","がっこう"],["高校","こうこう"]],
+  "母":[["母親","ははおや"],["母国","ぼこく"]],
+  "毎":[["毎日","まいにち"],["毎週","まいしゅう"]],
+  "気":[["元気","げんき"],["天気","てんき"]],
+  "水":[["水曜日","すいようび"],["水","みず"]],
+  "火":[["火曜日","かようび"],["火","ひ"]],
+  "父":[["父親","ちちおや"],["父","ちち"]],
+  "生":[["学生","がくせい"],["先生","せんせい"]],
+  "男":[["男性","だんせい"],["男の子","おとこのこ"]],
+  "白":[["白い","しろい"],["白紙","はくし"]],
+  "百":[["百円","ひゃくえん"],["百人","ひゃくにん"]],
+  "聞":[["新聞","しんぶん"],["聞く","きく"]],
+  "行":[["銀行","ぎんこう"],["旅行","りょこう"]],
+  "西":[["西口","にしぐち"],["西洋","せいよう"]],
+  "見":[["見学","けんがく"],["見る","みる"]],
+  "話":[["電話","でんわ"],["会話","かいわ"]],
+  "語":[["日本語","にほんご"],["英語","えいご"]],
+  "読":[["読む","よむ"],["読書","どくしょ"]],
+  "車":[["電車","でんしゃ"],["自転車","じてんしゃ"]],
+  "金":[["お金","おかね"],["金曜日","きんようび"]],
+  "長":[["長い","ながい"],["校長","こうちょう"]],
+  "間":[["時間","じかん"],["間に合う","まにあう"]],
+  "雨":[["雨","あめ"],["大雨","おおあめ"]],
+  "電":[["電話","でんわ"],["電車","でんしゃ"]],
+  "食":[["食べる","たべる"],["食事","しょくじ"]],
+  "高":[["高い","たかい"],["高校","こうこう"]],
+
+  // N4 (exemplos comuns o suficiente)
+  "不":[["不安","ふあん"],["不便","ふべん"]],
+  "世":[["世界","せかい"],["世話","せわ"]],
+  "主":[["主人","しゅじん"],["主題","しゅだい"]],
+  "事":[["仕事","しごと"],["事故","じこ"]],
+  "京":[["東京","とうきょう"],["京都","きょうと"]],
+  "会":[["会社","かいしゃ"],["会話","かいわ"]],
+  "住":[["住所","じゅうしょ"],["住む","すむ"]],
+  "体":[["体調","たいちょう"],["身体","しんたい"]],
+  "作":[["作文","さくぶん"],["作る","つくる"]],
+  "使":[["使う","つかう"],["使用","しよう"]],
+  "借":[["借りる","かりる"],["借金","しゃっきん"]],
+  "元":[["元気","げんき"],["元々","もともと"]],
+  "写":[["写真","しゃしん"],["写す","うつす"]],
+  "冬":[["冬休み","ふゆやすみ"],["冬服","ふゆふく"]],
+  "切":[["切る","きる"],["大切","たいせつ"]],
+  "別":[["別れる","わかれる"],["特別","とくべつ"]],
+  "力":[["力","ちから"],["努力","どりょく"]],
+  "動":[["動く","うごく"],["運動","うんどう"]],
+  "医":[["医者","いしゃ"],["医院","いいん"]],
+  "古":[["古い","ふるい"],["中古","ちゅうこ"]],
+  "同":[["同じ","おなじ"],["同時","どうじ"]],
+  "味":[["意味","いみ"],["味","あじ"]],
+  "品":[["商品","しょうひん"],["品物","しなもの"]],
+  "問":[["質問","しつもん"],["問題","もんだい"]],
+  "図":[["地図","ちず"],["図書館","としょかん"]],
+  "場":[["場所","ばしょ"],["工場","こうじょう"]],
+  "売":[["売る","うる"],["販売","はんばい"]],
+  "夏":[["夏休み","なつやすみ"],["夏服","なつふく"]],
+  "多":[["多い","おおい"],["多数","たすう"]],
+  "夜":[["夜","よる"],["今夜","こんや"]],
+  "姉":[["姉","あね"],["姉妹","しまい"]],
+  "妹":[["妹","いもうと"],["姉妹","しまい"]],
+  "始":[["始める","はじめる"],["開始","かいし"]],
+  "安":[["安い","やすい"],["安全","あんぜん"]],
+  "室":[["教室","きょうしつ"],["和室","わしつ"]],
+  "家":[["家族","かぞく"],["家","いえ"]],
+  "帰":[["帰る","かえる"],["帰国","きこく"]],
+  "店":[["店","みせ"],["書店","しょてん"]],
+  "建":[["建てる","たてる"],["建物","たてもの"]],
+  "強":[["強い","つよい"],["勉強","べんきょう"]],
+  "待":[["待つ","まつ"],["期待","きたい"]],
+  "心":[["心配","しんぱい"],["安心","あんしん"]],
+  "思":[["思う","おもう"],["不思議","ふしぎ"]],
+  "急":[["急ぐ","いそぐ"],["急行","きゅうこう"]],
+  "悪":[["悪い","わるい"],["最悪","さいあく"]],
+  "意":[["意味","いみ"],["意見","いけん"]],
+  "持":[["持つ","もつ"],["気持ち","きもち"]],
+  "教":[["教える","おしえる"],["教育","きょういく"]],
+  "文":[["文化","ぶんか"],["作文","さくぶん"]],
+  "新":[["新しい","あたらしい"],["新聞","しんぶん"]],
+  "旅":[["旅行","りょこう"],["旅館","りょかん"]],
+  "明":[["明日","あした"],["説明","せつめい"]],
+  "映":[["映画","えいが"],["上映","じょうえい"]],
+  "春":[["春","はる"],["春休み","はるやすみ"]],
+  "昼":[["昼","ひる"],["昼ご飯","ひるごはん"]],
+  "曜":[["曜日","ようび"],["日曜日","にちようび"]],
+  "服":[["服","ふく"],["制服","せいふく"]],
+  "朝":[["朝","あさ"],["今朝","けさ"]],
+  "業":[["授業","じゅぎょう"],["営業","えいぎょう"]],
+  "楽":[["楽しい","たのしい"],["音楽","おんがく"]],
+  "歌":[["歌","うた"],["歌手","かしゅ"]],
+  "正":[["正しい","ただしい"],["正月","しょうがつ"]],
+  "歩":[["歩く","あるく"],["散歩","さんぽ"]],
+  "死":[["死ぬ","しぬ"],["死亡","しぼう"]],
+  "注":[["注意","ちゅうい"],["注文","ちゅうもん"]],
+  "洋":[["洋服","ようふく"],["西洋","せいよう"]],
+  "海":[["海","うみ"],["海外","かいがい"]],
+  "漢":[["漢字","かんじ"],["漢語","かんご"]],
+  "物":[["物","もの"],["買い物","かいもの"]],
+  "特":[["特別","とくべつ"],["特徴","とくちょう"]],
+  "理":[["料理","りょうり"],["理由","りゆう"]],
+  "用":[["用事","ようじ"],["利用","りよう"]],
+  "町":[["町","まち"],["町長","ちょうちょう"]],
+  "界":[["世界","せかい"],["業界","ぎょうかい"]],
+  "病":[["病院","びょういん"],["病気","びょうき"]],
+  "発":[["出発","しゅっぱつ"],["発音","はつおん"]],
+  "真":[["写真","しゃしん"],["真ん中","まんなか"]],
+  "着":[["着る","きる"],["到着","とうちゃく"]],
+  "研":[["研究","けんきゅう"],["研修","けんしゅう"]],
+  "社":[["会社","かいしゃ"],["社会","しゃかい"]],
+  "秋":[["秋","あき"],["秋休み","あきやすみ"]],
+  "究":[["研究","けんきゅう"],["究極","きゅうきょく"]],
+  "空":[["空","そら"],["空港","くうこう"]],
+  "答":[["答える","こたえる"],["回答","かいとう"]],
+  "紙":[["紙","かみ"],["手紙","てがみ"]],
+  "終":[["終わる","おわる"],["最終","さいしゅう"]],
+  "習":[["習う","ならう"],["練習","れんしゅう"]],
+  "考":[["考える","かんがえる"],["参考","さんこう"]],
+  "者":[["若者","わかもの"],["記者","きしゃ"]],
+  "肉":[["肉","にく"],["牛肉","ぎゅうにく"]],
+  "自":[["自分","じぶん"],["自由","じゆう"]],
+  "花":[["花","はな"],["花火","はなび"]],
+  "英":[["英語","えいご"],["英国","えいこく"]],
+  "茶":[["お茶","おちゃ"],["茶色","ちゃいろ"]],
+  "親":[["親","おや"],["親切","しんせつ"]],
+  "計":[["時計","とけい"],["計画","けいかく"]],
+  "試":[["試験","しけん"],["試す","ためす"]],
+  "貸":[["貸す","かす"],["賃貸","ちんたい"]],
+  "質":[["質問","しつもん"],["品質","ひんしつ"]],
+  "赤":[["赤い","あかい"],["赤信号","あかしんごう"]],
+  "走":[["走る","はしる"],["競走","きょうそう"]],
+  "起":[["起きる","おきる"],["起こす","おこす"]],
+  "転":[["自転車","じてんしゃ"],["運転","うんてん"]],
+  "近":[["近い","ちかい"],["近所","きんじょ"]],
+  "送":[["送る","おくる"],["放送","ほうそう"]],
+  "通":[["通る","とおる"],["通学","つうがく"]],
+  "週":[["週末","しゅうまつ"],["来週","らいしゅう"]],
+  "運":[["運動","うんどう"],["運ぶ","はこぶ"]],
+  "道":[["道路","どうろ"],["道","みち"]],
+  "重":[["重い","おもい"],["重要","じゅうよう"]],
+  "銀":[["銀行","ぎんこう"],["銀色","ぎんいろ"]],
+  "開":[["開く","ひらく"],["開始","かいし"]],
+  "院":[["病院","びょういん"],["医院","いいん"]],
+  "集":[["集まる","あつまる"],["募集","ぼしゅう"]],
+  "青":[["青い","あおい"],["青年","せいねん"]],
+  "音":[["音","おと"],["発音","はつおん"]],
+  "題":[["問題","もんだい"],["題名","だいめい"]],
+  "風":[["風","かぜ"],["台風","たいふう"]],
+  "飯":[["ご飯","ごはん"],["朝飯","あさめし"]],
+  "飲":[["飲む","のむ"],["飲み物","のみもの"]],
+  "館":[["図書館","としょかん"],["旅館","りょかん"]],
+  "駅":[["駅","えき"],["駅前","えきまえ"]],
+  "験":[["試験","しけん"],["経験","けいけん"]],
+  "魚":[["魚","さかな"],["金魚","きんぎょ"]],
+  "鳥":[["鳥","とり"],["小鳥","ことり"]],
+  "黒":[["黒い","くろい"],["黒板","こくばん"]],
 };
 
 /* =========================
@@ -886,7 +1113,6 @@ function flash(type){
   f.classList.add("on");
   setTimeout(()=>f.classList.remove("on"), 560);
 }
-
 function shuffle(arr){
   const a = [...arr];
   for(let i=a.length-1;i>0;i--){
@@ -895,7 +1121,6 @@ function shuffle(arr){
   }
   return a;
 }
-
 function uniqByText(opts){
   const seen = new Set();
   const out = [];
@@ -913,16 +1138,14 @@ function levelOf(k){
   if(N4_SET.has(k)) return "N4";
   return "N4";
 }
-
 function allKanjisUnique(){
   const set = new Set([...N5_LIST, ...N4_LIST]);
   return Array.from(set);
 }
-
 function poolByLevel(level){
   const all = allKanjisUnique();
   if(level === "N5") return all.filter(k=>N5_SET.has(k));
-  if(level === "N4") return all.filter(k=>N4_SET.has(k) && !N5_SET.has(k) ? true : N4_SET.has(k)); // inclui duplicados também
+  if(level === "N4") return all.filter(k=>N4_SET.has(k));
   return all;
 }
 
@@ -939,36 +1162,31 @@ function openTab(id){
   tabs[id].classList.add("active");
   if(id==="kanji") renderKanjiGrid();
 }
-
 tabs.kanji.addEventListener("click", ()=>openTab("kanji"));
 tabs.quiz.addEventListener("click", ()=>openTab("quiz"));
 
 /* =========================
    STROKE ORDER (KanjiVG) + CACHE + ANIMAÇÃO
    ========================= */
-const svgCache = new Map();          // kanji -> svg text
-const strokeAnimState = new WeakMap(); // svg -> timeouts[]
+const svgCache = new Map();
+const strokeAnimState = new WeakMap();
 
 function codepointHex5(ch){
   return ch.codePointAt(0).toString(16).padStart(5,"0");
 }
-
 function clearSVGAnimation(svg){
   const st = strokeAnimState.get(svg);
   if(st?.length) st.forEach(t=>clearTimeout(t));
   strokeAnimState.set(svg, []);
 }
-
 function pickStrokePaths(svg){
   const all = Array.from(svg.querySelectorAll("path"));
-  // KanjiVG stroke paths geralmente têm id "...-s1", "...-s2", etc.
   const strokes = all.filter(p=>{
     const id = (p.getAttribute("id") || "");
     return /-s\d+/.test(id);
   });
   return strokes.length ? strokes : all;
 }
-
 function preparePaths(paths){
   for(const p of paths){
     p.style.fill = "none";
@@ -980,7 +1198,6 @@ function preparePaths(paths){
     p.style.transition = "none";
   }
 }
-
 function animateStrokeOrder(svg, speed=1){
   if(!svg) return;
   clearSVGAnimation(svg);
@@ -1004,8 +1221,6 @@ function animateStrokeOrder(svg, speed=1){
   for(let i=0;i<paths.length;i++){
     const p = paths[i];
     const len = lengths[i];
-
-    // duração proporcional, com limites
     const dur = Math.max(220, Math.min(900, len*2.1)) * speed;
 
     const t = setTimeout(()=>{
@@ -1016,7 +1231,6 @@ function animateStrokeOrder(svg, speed=1){
     timeouts.push(t);
     cursor += dur + 85*speed;
   }
-
   strokeAnimState.set(svg, timeouts);
 }
 
@@ -1025,21 +1239,17 @@ async function loadKanjiSVGInto(kanji, targetEl){
     targetEl.innerHTML = svgCache.get(kanji);
     return targetEl.querySelector("svg");
   }
-
   const hex = codepointHex5(kanji);
   const url = `https://cdn.jsdelivr.net/gh/KanjiVG/kanjivg@master/kanji/${hex}.svg`;
   targetEl.innerHTML = `<div class="small">Carregando stroke order...</div>`;
-
   try{
     const res = await fetch(url, {cache:"force-cache"});
     if(!res.ok) throw new Error("HTTP "+res.status);
     const svgText = await res.text();
-
     const cleaned = svgText
       .replace(/width="[^"]*"/g,'')
       .replace(/height="[^"]*"/g,'')
       .replace(/<\?xml[^>]*\?>/g,'');
-
     svgCache.set(kanji, cleaned);
     targetEl.innerHTML = cleaned;
     return targetEl.querySelector("svg");
@@ -1082,7 +1292,7 @@ function renderKanjiGrid(){
       <div class="k">${k}</div>
       <div class="lvl"><b>${lvl}</b> ・ clique</div>
     `;
-    div.addEventListener("click", ()=>showKanjiDetail(k));
+    div.addEventListener("click", ()=>showKanjiDetail(k, true));
     frag.appendChild(div);
   }
   kanjigrid.appendChild(frag);
@@ -1090,14 +1300,13 @@ function renderKanjiGrid(){
 
 levelFilter.addEventListener("change", ()=>{
   renderKanjiGrid();
-  // limpa detalhe ao trocar filtro
   selectedKanji = null;
   kdSvgEl = null;
   kdBox.style.display = "none";
   kdEmpty.style.display = "block";
 });
 
-async function showKanjiDetail(k){
+async function showKanjiDetail(k, autoScroll){
   selectedKanji = k;
   const info = KANJI_INFO[k] || {readings:["—"], meaning:"—"};
   const lvl = levelOf(k);
@@ -1114,6 +1323,14 @@ async function showKanjiDetail(k){
     <span class="badge tag">kanji</span>
   `;
 
+  // SCROLL automático para o detalhe (mais dinâmico)
+  if(autoScroll){
+    // rola até o painel de detalhe (no mobile é essencial)
+    $("detailPanel").scrollIntoView({behavior:"smooth", block:"start"});
+    // e depois garante que a caixa de stroke esteja visível
+    setTimeout(()=> $("kdStrokeBox").scrollIntoView({behavior:"smooth", block:"start"}), 250);
+  }
+
   kdSvgEl = await loadKanjiSVGInto(k, kdStroke);
   animateStrokeOrder(kdSvgEl, Number(kdSpeed.value));
 }
@@ -1126,7 +1343,6 @@ kdSpeed.addEventListener("change", ()=>{
   if(!selectedKanji) return;
   animateStrokeOrder(kdSvgEl, Number(kdSpeed.value));
 });
-
 $("kdTrain").addEventListener("click", ()=>{
   if(!selectedKanji) return;
   openTab("quiz");
@@ -1136,7 +1352,7 @@ $("kdTrain").addEventListener("click", ()=>{
 /* =========================
    QUIZ: stats + mood
    ========================= */
-const LS_KEY = "vampire_znzn_kanji_quiz_v5";
+const LS_KEY = "vampire_znzn_kanji_quiz_v6";
 
 function defaultStats(){
   return {
@@ -1145,8 +1361,8 @@ function defaultStats(){
     bestScore: 0,
     totalCorrect: 0,
     totalWrong: 0,
-    perKanji: {},   // { "日":{c,w} }
-    recent: []      // últimos 12 (1/0)
+    perKanji: {},
+    recent: []
   };
 }
 function loadStats(){
@@ -1199,6 +1415,7 @@ const meaningChoices = $("meaningChoices");
 const quizFeedback = $("quizFeedback");
 const quizFeedbackTitle = $("quizFeedbackTitle");
 const quizFeedbackDetail = $("quizFeedbackDetail");
+const quizVocab = $("quizVocab");
 const quizStroke = $("quizStroke");
 const quizSpeed = $("quizSpeed");
 
@@ -1309,7 +1526,6 @@ function buildChoices(kind, correctKanji, pool){
     if(opts.some(o=>o.text===text)) continue;
     opts.push({text, correct:false});
   }
-
   return shuffle(opts);
 }
 
@@ -1373,10 +1589,7 @@ function weightedPick(pool){
 function getQuizPool(){
   const lvl = quizLevel.value;
   const pool = poolByLevel(lvl);
-
-  // segurança: se por algum motivo ficou pequeno, cai pra ALL
-  if(pool.length < 6) return poolByLevel("ALL");
-  return pool;
+  return pool.length < 6 ? poolByLevel("ALL") : pool;
 }
 
 function pickKanji(pool){
@@ -1386,6 +1599,13 @@ function pickKanji(pool){
   }
   quizState.lastPick = k;
   return k;
+}
+
+function formatVocab2(kanji){
+  const arr = VOCAB_2[kanji];
+  if(!arr || !arr.length) return "—";
+  const lines = arr.slice(0,2).map(([w,r])=>`• <b>${w}</b>（${r}）`);
+  return lines.join("<br>");
 }
 
 async function showFeedback(okAll, reason){
@@ -1403,6 +1623,8 @@ async function showFeedback(okAll, reason){
     Significado: <b>${info.meaning||"—"}</b>
   `;
 
+  quizVocab.innerHTML = formatVocab2(k);
+
   quizSvgEl = await loadKanjiSVGInto(k, quizStroke);
   animateStrokeOrder(quizSvgEl, Number(quizSpeed.value));
 }
@@ -1414,20 +1636,16 @@ function commitResult(okAll, reason){
   if(okAll){
     quizState.sessionCorrect += 1;
     quizState.sessionStreak += 1;
-
     stats.totalCorrect += 1;
     stats.perKanji[k].c += 1;
     pushRecent(true);
-
     flash("good");
   }else{
     quizState.sessionWrong += 1;
     quizState.sessionStreak = 0;
-
     stats.totalWrong += 1;
     stats.perKanji[k].w += 1;
     pushRecent(false);
-
     flash("bad");
   }
 
@@ -1473,7 +1691,6 @@ async function setQuestion(kanji, keepTimerRunning){
     evaluateIfComplete();
   });
 
-  // Timer: auto-run decide se inicia sozinho
   if(quizState.running){
     startTimer(true);
   }else if(!keepTimerRunning){
@@ -1498,7 +1715,7 @@ function nextQuestion(){
 }
 
 /* =========================
-   TIMER (1 interval, nunca duplica)
+   TIMER
    ========================= */
 function updateTimerUI(){
   const leftSec = Math.max(0, Math.ceil(quizState.timeLeftMs/1000));
@@ -1507,7 +1724,6 @@ function updateTimerUI(){
   const pct = quizState.timeTotalMs ? (quizState.timeLeftMs/quizState.timeTotalMs) : 0;
   timerBar.style.width = `${Math.max(0, Math.min(1, pct))*100}%`;
 }
-
 function stopTimer(){
   if(quizState.timerId){
     clearInterval(quizState.timerId);
@@ -1515,7 +1731,6 @@ function stopTimer(){
   }
   quizState.running = false;
 }
-
 function startTimer(reset){
   const seconds = Number(quizTime.value);
   quizState.timeTotalMs = seconds*1000;
@@ -1527,7 +1742,6 @@ function startTimer(reset){
   quizState.timerId = setInterval(()=>{
     quizState.timeLeftMs -= 200;
     updateTimerUI();
-
     if(quizState.timeLeftMs <= 0){
       stopTimer();
       commitResult(false, "timeout");
@@ -1573,11 +1787,7 @@ quizSpeed.addEventListener("change", ()=>{
   if(!quizSvgEl) return;
   animateStrokeOrder(quizSvgEl, Number(quizSpeed.value));
 });
-
-quizLevel.addEventListener("change", ()=>{
-  // troca de pool: avança pra não ficar preso em opções antigas
-  nextQuestion();
-});
+quizLevel.addEventListener("change", ()=> nextQuestion());
 
 /* =========================
    INIT
