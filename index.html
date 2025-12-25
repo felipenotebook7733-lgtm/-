@@ -17,6 +17,8 @@
   --accent:#7b5cff;
   --accent2:#36d1dc;
   --accent3:#fb7185;
+  --good:#34d399;
+  --warn:#f59e0b;
 
   --radius:16px;
   --shadow: 0 18px 65px rgba(0,0,0,.45);
@@ -186,6 +188,14 @@ nav{
   border-color: rgba(251,113,133,.35);
   background: rgba(251,113,133,.10);
 }
+.btn.good{
+  border-color: rgba(52,211,153,.35);
+  background: rgba(52,211,153,.10);
+}
+.btn.warn{
+  border-color: rgba(245,158,11,.35);
+  background: rgba(245,158,11,.10);
+}
 
 .card{
   background: rgba(255,255,255,.07);
@@ -285,6 +295,52 @@ nav{
 }
 .kanjiitem .lvl b{ color:var(--text); }
 
+.strokeBox{
+  margin-top:12px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  overflow:hidden;
+  background: rgba(255,255,255,.04);
+}
+.strokeHead{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:10px 12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.strokeHead .t{ font-size:13px; color: var(--muted); }
+.strokeBody{
+  padding:12px;
+}
+.strokeBody svg{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.strokeNote{
+  color: var(--muted);
+  font-size:12px;
+  margin-top:8px;
+}
+
+.bigKanji{
+  font-size:86px;
+  font-weight:900;
+  letter-spacing:2px;
+  text-align:center;
+  color: var(--accent2);
+  line-height:1.0;
+  margin: 8px 0 6px;
+}
+.quizInputs{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+@media (max-width: 720px){ .quizInputs{ grid-template-columns: 1fr; } }
+
 hr.sep{
   border:none;
   border-top:1px solid rgba(255,255,255,.08);
@@ -319,6 +375,7 @@ hr.sep{
     <nav>
       <div class="tabbtn active" id="tab-dic">📖 Dicionário</div>
       <div class="tabbtn" id="tab-kanji">🈶 Kanji (N5→N4)</div>
+      <div class="tabbtn" id="tab-quiz">🎮 Jogo</div>
       <div class="tabbtn" id="tab-about">ℹ️ Sobre</div>
     </nav>
   </div>
@@ -333,10 +390,7 @@ hr.sep{
         <div class="row">
           <div>
             <h2>Dicionário (JP → PT-BR)</h2>
-            <p class="hint">
-              Busca ranqueada (exato primeiro). Aceita kanji/kana/português.
-              Ex.: 食べる / げんき / “atrasar”.
-            </p>
+            <p class="hint">Busca ranqueada (exato primeiro). Aceita kanji/kana/português.</p>
           </div>
 
           <label class="toggle" title="Se existir uma entrada exata, mostra só ela.">
@@ -358,8 +412,8 @@ hr.sep{
         <p class="small">
           1) Busque a palavra → confirme leitura e significado.<br>
           2) Leia as 3 frases (JP → hiragana → PT).<br>
-          3) Entenda as estruturas na explicação (partículas/tempo/padrão).<br>
-          4) Faça variações: troque lugar/tempo/objeto mantendo o padrão.<br>
+          3) Entenda as estruturas na explicação.<br>
+          4) Faça variações mantendo o padrão.<br>
         </p>
 
         <hr class="sep" />
@@ -367,12 +421,13 @@ hr.sep{
         <div class="row">
           <div class="btn primary" id="btnRandom">Palavra aleatória</div>
           <div class="btn" id="btnGoKanji">Ver kanji (N5→N4)</div>
+          <div class="btn warn" id="btnGoQuiz">Ir pro jogo</div>
         </div>
 
         <hr class="sep" />
 
         <p class="small">
-          <b>Meta 2000:</b> este arquivo suporta 2000+ itens sem travar porque renderiza só os melhores resultados.
+          <b>Meta 2000:</b> este arquivo suporta 2000+ itens (renderiza só top resultados).
           Você só precisa adicionar entradas no array <b>WORDS</b>.
         </p>
       </div>
@@ -381,13 +436,119 @@ hr.sep{
 
   <!-- ====================== KANJI LISTA ====================== -->
   <section id="kanji" class="section">
-    <div class="panel">
-      <h2>Kanji — ordem N5 → N4</h2>
-      <p class="hint">
-        Clique num kanji para abrir o Dicionário e buscar automaticamente.
-        (Se ainda não houver ficha no dicionário, o site mostra aviso.)
-      </p>
-      <div class="kanjigrid" id="kanjigrid"></div>
+    <div class="grid">
+      <div class="panel">
+        <h2>Kanji — ordem N5 → N4</h2>
+        <p class="hint">Clique num kanji: mostra leitura/significado + ordem dos traços.</p>
+        <div class="kanjigrid" id="kanjigrid"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Detalhe do Kanji</h2>
+        <p class="hint">Selecione um kanji na lista.</p>
+
+        <div id="kanjiDetail" class="card" style="display:none;">
+          <div class="jp" id="kdKanji"></div>
+          <div class="hira" id="kdReadings"></div>
+          <div class="mean" id="kdMean"></div>
+          <div class="badges" id="kdBadges"></div>
+
+          <div class="strokeBox">
+            <div class="strokeHead">
+              <div class="t">Ordem dos traços (Stroke order)</div>
+              <div class="btn" id="kdReloadStroke">Recarregar</div>
+            </div>
+            <div class="strokeBody" id="kdStroke"></div>
+            <div class="strokeNote">Se não aparecer: GitHub Pages precisa carregar o SVG online (KanjiVG).</div>
+          </div>
+
+          <hr class="sep">
+          <div class="row">
+            <div class="btn primary" id="kdSearchDic">Buscar no Dicionário</div>
+            <div class="btn warn" id="kdGoQuiz">Treinar no Jogo</div>
+          </div>
+        </div>
+
+        <div id="kanjiDetailEmpty" class="card">
+          <div class="mean" style="color:var(--muted);">Clique em um kanji para ver detalhes aqui.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== QUIZ (JOGO) ====================== -->
+  <section id="quiz" class="section">
+    <div class="grid">
+      <div class="panel">
+        <div class="row">
+          <div>
+            <h2>Jogo — leitura e significado</h2>
+            <p class="hint">Pense e/ou digite → clique em <b>Verificar</b>. O sistema mostra se acertou e revela a resposta.</p>
+          </div>
+          <label class="toggle" title="Se ligado, o jogo pega só N5; se desligado, pega N5+N4 quando você expandir.">
+            <input type="checkbox" id="quizOnlyN5" checked />
+            somente N5
+          </label>
+        </div>
+
+        <div class="card">
+          <div class="bigKanji" id="quizKanji">一</div>
+          <div class="quizInputs">
+            <div>
+              <div class="hira">Leitura (hiragana/katakana)</div>
+              <div class="searchbox" style="margin-top:6px;">
+                <input id="quizReading" placeholder="ex: いち / なな / ひと" />
+              </div>
+            </div>
+            <div>
+              <div class="hira">Significado (PT-BR)</div>
+              <div class="searchbox" style="margin-top:6px;">
+                <input id="quizMeaning" placeholder="ex: um / sete / pessoa" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:12px;">
+            <div class="btn primary" id="quizCheck">Verificar</div>
+            <div class="btn" id="quizReveal">Revelar (sem pontuar)</div>
+            <div class="btn warn" id="quizNext">Próximo</div>
+            <div class="btn danger" id="quizReset">Zerar</div>
+          </div>
+
+          <div class="badges" style="margin-top:12px;">
+            <span class="badge" id="quizScore">Acertos: 0 · Erros: 0 · Streak: 0</span>
+            <span class="badge tag" id="quizMode">Modo: N5</span>
+          </div>
+
+          <div id="quizFeedback" class="card" style="display:none;margin-top:12px;">
+            <div class="mean" id="quizFeedbackTitle"></div>
+            <div class="hira" id="quizFeedbackDetail"></div>
+
+            <div class="strokeBox" style="margin-top:12px;">
+              <div class="strokeHead">
+                <div class="t">Ordem dos traços (Stroke order)</div>
+                <div class="btn" id="quizReloadStroke">Recarregar</div>
+              </div>
+              <div class="strokeBody" id="quizStroke"></div>
+              <div class="strokeNote">Se não aparecer: é carregado online (KanjiVG).</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Como “acerto” é calculado</h2>
+        <p class="small">
+          • Leitura: aceita qualquer leitura válida cadastrada (ex.: いち / ひと).<br>
+          • Significado: você pode digitar um termo chave (ex.: “um”, “pessoa”, “chuva”).<br>
+          • Dica: o jogo é treino — o importante é repetição + correção rápida.
+        </p>
+        <hr class="sep">
+        <p class="small">
+          <b>Quer ficar mais difícil?</b><br>
+          Eu consigo trocar para múltipla escolha (4 alternativas) e adicionar “timer”.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -396,180 +557,199 @@ hr.sep{
     <div class="panel">
       <h2>Sobre — ヴァンパイア全知全能</h2>
       <p class="small">
-        Este dicionário faz parte do projeto <b>ヴァンパイア全知全能</b>.<br>
-        O foco é japonês de verdade (N5→N4): <b>palavra → 3 frases → explicação detalhada em PT-BR</b>.<br><br>
+        Este dicionário + jogo fazem parte do projeto <b>ヴァンパイア全知全能</b>.<br>
+        O foco é japonês real (N5→N4): <b>palavra/kanji → prática → correção → repetição</b>.<br><br>
         “Vampiro” é metáfora do observador que coleta padrões do cotidiano.<br>
         “全知全能” representa disciplina: aprender por sistema, sem pular base.
-      </p>
-      <hr class="sep">
-      <p class="small">
-        Identidade, estrutura e curadoria: <b>ヴァンパイア全知全能</b>.
       </p>
     </div>
   </section>
 
-  <div class="footer">ヴァンパイア全知全能 © 2025 — 辞典 / Kanji / Estudo do cotidiano</div>
+  <div class="footer">ヴァンパイア全知全能 © 2025 — 辞典 / Kanji / Jogo</div>
 </div>
 
 <script>
 /* =========================
-   DADOS: DICIONÁRIO (WORDS)
-   Cada entrada precisa:
-   jp, hira, tipo, mean, tags, examples[3] {jp,hira,pt,exp}
+   DICIONÁRIO (opcional – você expande)
    ========================= */
 const WORDS = [
   {
-    jp:"食べる",
-    hira:"たべる",
-    tipo:"verbo (ichidan)",
-    mean:"comer",
-    tags:["N5","cotidiano"],
+    jp:"食べる", hira:"たべる", tipo:"verbo (ichidan)", mean:"comer", tags:["N5","cotidiano"],
     examples:[
       { jp:"朝ごはんを食べました。", hira:"あさごはん を たべました。", pt:"Comi café da manhã.", exp:"朝ごはん = café da manhã; を = objeto; 〜ました = passado polido." },
       { jp:"何を食べたいですか？", hira:"なに を たべたい です か？", pt:"O que você quer comer?", exp:"〜たい = querer; ですか = pergunta educada." },
       { jp:"友だちと昼ごはんを食べに行きます。", hira:"ともだち と ひるごはん を たべ に いきます。", pt:"Vou almoçar com um amigo.", exp:"Vます-stem + に行く = ir para fazer algo (食べます→食べ)." }
     ]
-  },
-  {
-    jp:"元気",
-    hira:"げんき",
-    tipo:"な-adjetivo / substantivo",
-    mean:"bem, saudável, animado",
-    tags:["N5","cotidiano"],
-    examples:[
-      { jp:"元気ですか？", hira:"げんき です か？", pt:"Tudo bem?", exp:"Pergunta padrão. です + か = pergunta educada." },
-      { jp:"今日は元気がないね。", hira:"きょう は げんき が ない ね。", pt:"Hoje você não parece bem.", exp:"〜がない = não ter (energia/ânimo). ね = tom de conversa." },
-      { jp:"子どもたちは元気に走っています。", hira:"こどもたち は げんき に はしって います。", pt:"As crianças estão correndo cheias de energia.", exp:"元気に = advérbio (com energia); 〜ている = ação em andamento." }
-    ]
-  },
-  {
-    jp:"大丈夫",
-    hira:"だいじょうぶ",
-    tipo:"な-adjetivo / expressão",
-    mean:"tudo bem; tranquilo; sem problemas",
-    tags:["N5","cotidiano"],
-    examples:[
-      { jp:"大丈夫ですか？", hira:"だいじょうぶ です か？", pt:"Você está bem?", exp:"Serve para saúde, situação e também entendimento." },
-      { jp:"大丈夫、間に合うよ。", hira:"だいじょうぶ、まにあう よ。", pt:"Tranquilo, vai dar tempo.", exp:"間に合う = dar tempo; よ = certeza/segurança." },
-      { jp:"この服で大丈夫？", hira:"この ふく で だいじょうぶ？", pt:"Essa roupa tá ok assim?", exp:"で = condição/estado ('com isso'); frase casual." }
-    ]
-  },
-  {
-    jp:"遅れる",
-    hira:"おくれる",
-    tipo:"verbo (ichidan)",
-    mean:"atrasar-se; atrasar",
-    tags:["N4","cotidiano"],
-    examples:[
-      { jp:"ごめん、少し遅れる。", hira:"ごめん、すこし おくれる。", pt:"Foi mal, vou me atrasar um pouco.", exp:"Mensagem real do dia a dia. すこし = um pouco." },
-      { jp:"電車が遅れている。", hira:"でんしゃ が おくれている。", pt:"O trem está atrasado.", exp:"〜ている = estado atual (continua atrasado agora)." },
-      { jp:"連絡が遅れてすみません。", hira:"れんらく が おくれて すみません。", pt:"Desculpa a demora em responder/avisar.", exp:"Expressão padrão em chat/e-mail." }
-    ]
   }
 ];
 
 /* =========================
-   KANJI: ORDEM N5 (exata) + N4 placeholder
+   KANJI N5 (seus 80) + INFO (leitura/significado)
    ========================= */
-const KANJI_ORDER = [
-  // N5 (ordem exata que você mandou)
-  {k:"一", lvl:"N5"},{k:"七", lvl:"N5"},{k:"万", lvl:"N5"},{k:"三", lvl:"N5"},{k:"上", lvl:"N5"},{k:"下", lvl:"N5"},
-  {k:"中", lvl:"N5"},{k:"九", lvl:"N5"},{k:"二", lvl:"N5"},{k:"五", lvl:"N5"},{k:"人", lvl:"N5"},{k:"今", lvl:"N5"},
-  {k:"休", lvl:"N5"},{k:"何", lvl:"N5"},{k:"先", lvl:"N5"},{k:"入", lvl:"N5"},{k:"八", lvl:"N5"},{k:"六", lvl:"N5"},
-  {k:"円", lvl:"N5"},{k:"出", lvl:"N5"},{k:"分", lvl:"N5"},{k:"前", lvl:"N5"},{k:"北", lvl:"N5"},{k:"十", lvl:"N5"},
-  {k:"千", lvl:"N5"},{k:"午", lvl:"N5"},{k:"半", lvl:"N5"},{k:"南", lvl:"N5"},{k:"友", lvl:"N5"},{k:"右", lvl:"N5"},
-  {k:"名", lvl:"N5"},{k:"四", lvl:"N5"},{k:"国", lvl:"N5"},{k:"土", lvl:"N5"},{k:"外", lvl:"N5"},{k:"大", lvl:"N5"},
-  {k:"天", lvl:"N5"},{k:"女", lvl:"N5"},{k:"子", lvl:"N5"},{k:"学", lvl:"N5"},{k:"小", lvl:"N5"},{k:"山", lvl:"N5"},
-  {k:"川", lvl:"N5"},{k:"左", lvl:"N5"},{k:"年", lvl:"N5"},{k:"後", lvl:"N5"},{k:"日", lvl:"N5"},{k:"時", lvl:"N5"},
-  {k:"書", lvl:"N5"},{k:"月", lvl:"N5"},{k:"木", lvl:"N5"},{k:"本", lvl:"N5"},{k:"来", lvl:"N5"},{k:"東", lvl:"N5"},
-  {k:"校", lvl:"N5"},{k:"母", lvl:"N5"},{k:"毎", lvl:"N5"},{k:"気", lvl:"N5"},{k:"水", lvl:"N5"},{k:"火", lvl:"N5"},
-  {k:"父", lvl:"N5"},{k:"生", lvl:"N5"},{k:"男", lvl:"N5"},{k:"白", lvl:"N5"},{k:"百", lvl:"N5"},{k:"聞", lvl:"N5"},
-  {k:"行", lvl:"N5"},{k:"西", lvl:"N5"},{k:"見", lvl:"N5"},{k:"話", lvl:"N5"},{k:"語", lvl:"N5"},{k:"読", lvl:"N5"},
-  {k:"車", lvl:"N5"},{k:"金", lvl:"N5"},{k:"長", lvl:"N5"},{k:"間", lvl:"N5"},{k:"雨", lvl:"N5"},{k:"電", lvl:"N5"},
-  {k:"食", lvl:"N5"},{k:"高", lvl:"N5"},
-
-  // N4 (placeholder – você vai expandindo depois)
-  {k:"考", lvl:"N4"},{k:"続", lvl:"N4"},{k:"困", lvl:"N4"},{k:"決", lvl:"N4"},{k:"予", lvl:"N4"},{k:"変", lvl:"N4"},
-  {k:"遅", lvl:"N4"},{k:"忘", lvl:"N4"},{k:"返", lvl:"N4"},{k:"直", lvl:"N4"},{k:"置", lvl:"N4"},{k:"起", lvl:"N4"},
-  {k:"眠", lvl:"N4"},{k:"乗", lvl:"N4"},{k:"降", lvl:"N4"}
+const KANJI_ORDER_N5 = [
+  "一","七","万","三","上","下","中","九","二","五","人","今","休","何","先","入","八","六","円","出","分","前","北","十","千","午","半","南","友","右","名","四","国","土","外","大","天","女","子","学","小","山","川","左","年","後","日","時","書","月","木","本","来","東","校","母","毎","気","水","火","父","生","男","白","百","聞","行","西","見","話","語","読","車","金","長","間","雨","電","食","高"
 ];
 
+// Leituras aceitas (hiragana/katakana). Significados são “palavras-chave” PT.
+const KANJI_INFO = {
+  "一":{lvl:"N5", readings:["いち","ひと"], meanings:["um","1"]},
+  "七":{lvl:"N5", readings:["しち","なな"], meanings:["sete","7"]},
+  "万":{lvl:"N5", readings:["まん"], meanings:["dez mil","10000","10 mil"]},
+  "三":{lvl:"N5", readings:["さん","みっ"], meanings:["três","3"]},
+  "上":{lvl:"N5", readings:["じょう","うえ","あ"], meanings:["cima","acima","superior"]},
+  "下":{lvl:"N5", readings:["か","した","さ"], meanings:["baixo","abaixo","inferior"]},
+  "中":{lvl:"N5", readings:["ちゅう","なか"], meanings:["meio","dentro","centro"]},
+  "九":{lvl:"N5", readings:["きゅう","ここの"], meanings:["nove","9"]},
+  "二":{lvl:"N5", readings:["に","ふた"], meanings:["dois","2"]},
+  "五":{lvl:"N5", readings:["ご","いつ"], meanings:["cinco","5"]},
+  "人":{lvl:"N5", readings:["じん","にん","ひと"], meanings:["pessoa","gente","humano"]},
+  "今":{lvl:"N5", readings:["こん","いま"], meanings:["agora","atualmente"]},
+  "休":{lvl:"N5", readings:["きゅう","やす"], meanings:["descansar","folga","feriado","pausa"]},
+  "何":{lvl:"N5", readings:["なん","なに"], meanings:["o que","qual"]},
+  "先":{lvl:"N5", readings:["せん","さき"], meanings:["antes","anterior","frente","ponta"]},
+  "入":{lvl:"N5", readings:["にゅう","い"], meanings:["entrar","inserir","entrada"]},
+  "八":{lvl:"N5", readings:["はち","や"], meanings:["oito","8"]},
+  "六":{lvl:"N5", readings:["ろく","む"], meanings:["seis","6"]},
+  "円":{lvl:"N5", readings:["えん"], meanings:["iene","yen","círculo"]},
+  "出":{lvl:"N5", readings:["しゅつ","で","だ"], meanings:["sair","saída","aparecer","tirar"]},
+  "分":{lvl:"N5", readings:["ぶん","ふん","わ"], meanings:["minuto","parte","entender"]},
+  "前":{lvl:"N5", readings:["ぜん","まえ"], meanings:["antes","frente","anterior"]},
+  "北":{lvl:"N5", readings:["ほく","きた"], meanings:["norte"]},
+  "十":{lvl:"N5", readings:["じゅう","とお"], meanings:["dez","10"]},
+  "千":{lvl:"N5", readings:["せん","ち"], meanings:["mil","1000"]},
+  "午":{lvl:"N5", readings:["ご"], meanings:["meio-dia","am/pm","hora do cavalo"]},
+  "半":{lvl:"N5", readings:["はん"], meanings:["metade","meia"]},
+  "南":{lvl:"N5", readings:["なん","みなみ"], meanings:["sul"]},
+  "友":{lvl:"N5", readings:["ゆう","とも"], meanings:["amigo"]},
+  "右":{lvl:"N5", readings:["う","みぎ"], meanings:["direita"]},
+  "名":{lvl:"N5", readings:["めい","な"], meanings:["nome","fama"]},
+  "四":{lvl:"N5", readings:["し","よん","よ"], meanings:["quatro","4"]},
+  "国":{lvl:"N5", readings:["こく","くに"], meanings:["país","nação"]},
+  "土":{lvl:"N5", readings:["ど","つち"], meanings:["terra","solo","sábado"]},
+  "外":{lvl:"N5", readings:["がい","そと","はず"], meanings:["fora","exterior"]},
+  "大":{lvl:"N5", readings:["だい","おお"], meanings:["grande"]},
+  "天":{lvl:"N5", readings:["てん","あま"], meanings:["céu","paraíso"]},
+  "女":{lvl:"N5", readings:["じょ","おんな"], meanings:["mulher","feminino"]},
+  "子":{lvl:"N5", readings:["し","こ"], meanings:["criança","filho"]},
+  "学":{lvl:"N5", readings:["がく","まな"], meanings:["estudo","aprender","escola"]},
+  "小":{lvl:"N5", readings:["しょう","ちい"], meanings:["pequeno"]},
+  "山":{lvl:"N5", readings:["さん","やま"], meanings:["montanha"]},
+  "川":{lvl:"N5", readings:["せん","かわ"], meanings:["rio"]},
+  "左":{lvl:"N5", readings:["さ","ひだり"], meanings:["esquerda"]},
+  "年":{lvl:"N5", readings:["ねん","とし"], meanings:["ano"]},
+  "後":{lvl:"N5", readings:["ご","のち","うし"], meanings:["depois","atrás"]},
+  "日":{lvl:"N5", readings:["にち","じつ","ひ"], meanings:["dia","sol"]},
+  "時":{lvl:"N5", readings:["じ","とき"], meanings:["hora","tempo"]},
+  "書":{lvl:"N5", readings:["しょ","か"], meanings:["escrever","livro"]},
+  "月":{lvl:"N5", readings:["げつ","がつ","つき"], meanings:["mês","lua"]},
+  "木":{lvl:"N5", readings:["もく","ぼく","き"], meanings:["árvore","madeira"]},
+  "本":{lvl:"N5", readings:["ほん","もと"], meanings:["livro","origem"]},
+  "来":{lvl:"N5", readings:["らい","く","こ"], meanings:["vir","próximo"]},
+  "東":{lvl:"N5", readings:["とう","ひがし"], meanings:["leste"]},
+  "校":{lvl:"N5", readings:["こう"], meanings:["escola"]},
+  "母":{lvl:"N5", readings:["ぼ","はは"], meanings:["mãe"]},
+  "毎":{lvl:"N5", readings:["まい"], meanings:["todo","cada"]},
+  "気":{lvl:"N5", readings:["き","け"], meanings:["energia","ar","espírito","clima","humor"]},
+  "水":{lvl:"N5", readings:["すい","みず"], meanings:["água","quarta"]},
+  "火":{lvl:"N5", readings:["か","ひ"], meanings:["fogo","terça"]},
+  "父":{lvl:"N5", readings:["ふ","ちち"], meanings:["pai"]},
+  "生":{lvl:"N5", readings:["せい","しょう","い","う","なま"], meanings:["vida","nascer","cru","aluno"]},
+  "男":{lvl:"N5", readings:["だん","おとこ"], meanings:["homem","masculino"]},
+  "白":{lvl:"N5", readings:["はく","しろ"], meanings:["branco"]},
+  "百":{lvl:"N5", readings:["ひゃく"], meanings:["cem","100"]},
+  "聞":{lvl:"N5", readings:["ぶん","き"], meanings:["ouvir","perguntar"]},
+  "行":{lvl:"N5", readings:["こう","ぎょう","い","ゆ"], meanings:["ir","linha","fazer"]},
+  "西":{lvl:"N5", readings:["せい","にし"], meanings:["oeste"]},
+  "見":{lvl:"N5", readings:["けん","み"], meanings:["ver","olhar","assistir"]},
+  "話":{lvl:"N5", readings:["わ","はな"], meanings:["falar","conversa","história"]},
+  "語":{lvl:"N5", readings:["ご","かた"], meanings:["língua","idioma","palavra"]},
+  "読":{lvl:"N5", readings:["どく","よ"], meanings:["ler"]},
+  "車":{lvl:"N5", readings:["しゃ","くるま"], meanings:["carro","veículo"]},
+  "金":{lvl:"N5", readings:["きん","かね"], meanings:["dinheiro","ouro","sexta"]},
+  "長":{lvl:"N5", readings:["ちょう","なが"], meanings:["longo","chefe"]},
+  "間":{lvl:"N5", readings:["かん","けん","あいだ","ま"], meanings:["entre","intervalo","tempo"]},
+  "雨":{lvl:"N5", readings:["う","あめ"], meanings:["chuva"]},
+  "電":{lvl:"N5", readings:["でん"], meanings:["eletricidade"]},
+  "食":{lvl:"N5", readings:["しょく","た"], meanings:["comer","comida"]},
+  "高":{lvl:"N5", readings:["こう","たか"], meanings:["alto","caro"]},
+};
+
 /* =========================
-   ESTADO / DOM
+   CANVAS: tabs
    ========================= */
 const sections = {
   dic: document.getElementById("dic"),
   kanji: document.getElementById("kanji"),
+  quiz: document.getElementById("quiz"),
   about: document.getElementById("about"),
 };
 
 const tabs = {
   dic: document.getElementById("tab-dic"),
   kanji: document.getElementById("tab-kanji"),
+  quiz: document.getElementById("tab-quiz"),
   about: document.getElementById("tab-about"),
 };
 
-const q = document.getElementById("q");
-const results = document.getElementById("results");
-const onlyExactEl = document.getElementById("onlyExact");
-const kanjigrid = document.getElementById("kanjigrid");
+function openTab(id){
+  Object.values(sections).forEach(s=>s.classList.remove("active"));
+  Object.values(tabs).forEach(t=>t.classList.remove("active"));
+  sections[id].classList.add("active");
+  tabs[id].classList.add("active");
 
-const btnClear = document.getElementById("btnClear");
-const btnRandom = document.getElementById("btnRandom");
-const btnGoKanji = document.getElementById("btnGoKanji");
+  if(id==="kanji") renderKanjiGrid();
+  if(id==="dic") setTimeout(()=>document.getElementById("q").focus(),0);
+}
 
 /* =========================
-   UTIL: normalização robusta
+   UTIL: normalize / html escape / kana
    ========================= */
+function escapeHtml(str){
+  return (str ?? "").toString()
+    .replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;").replaceAll("'","&#039;");
+}
 function normalize(s){
   return (s ?? "")
-    .toString()
-    .trim()
-    .toLowerCase()
+    .toString().trim().toLowerCase()
     .replace(/[\s　]+/g, "")
     .replace(/[。、，,.!?！？「」『』（）()【】\[\]""'’]/g, "");
 }
-
-function escapeHtml(str){
-  return (str ?? "").toString()
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+function kataToHira(str){
+  // converte katakana básico para hiragana (para comparar leitura)
+  return (str ?? "").replace(/[\u30A1-\u30F6]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
 }
 
 /* =========================
-   BUSCA: ranking e exato
+   DICIONÁRIO: busca ranqueada
    ========================= */
+const q = document.getElementById("q");
+const results = document.getElementById("results");
+const onlyExactEl = document.getElementById("onlyExact");
+
 function isExactHeadword(word, qNorm){
   const jp = normalize(word.jp);
   const hira = normalize(word.hira);
   const mean = normalize(word.mean);
   return (jp && jp === qNorm) || (hira && hira === qNorm) || (mean && mean === qNorm);
 }
-
 function scoreWord(word, qNorm){
   const jp = normalize(word.jp);
   const hira = normalize(word.hira);
   const mean = normalize(word.mean);
 
-  // 1) Exato
   if(jp === qNorm) return 1000;
   if(hira === qNorm) return 950;
   if(mean === qNorm) return 900;
 
-  // 2) Começa com
   if(jp.startsWith(qNorm)) return 780;
   if(hira.startsWith(qNorm)) return 740;
   if(mean.startsWith(qNorm)) return 700;
 
-  // 3) Contém
   if(jp.includes(qNorm)) return 520;
   if(hira.includes(qNorm)) return 500;
   if(mean.includes(qNorm)) return 480;
 
-  // 4) Exemplos (menor prioridade)
   const ex = (word.examples || []);
   let best = 0;
   for(const e of ex){
@@ -580,8 +760,6 @@ function scoreWord(word, qNorm){
     if(ejp === qNorm || ehira === qNorm || ept === qNorm) best = Math.max(best, 360);
     else if(ejp.includes(qNorm) || ehira.includes(qNorm) || ept.includes(qNorm) || eexp.includes(qNorm)) best = Math.max(best, 220);
   }
-
-  // 5) Tags/Tipo
   const tags = (word.tags || []).map(normalize);
   const tipo = normalize(word.tipo);
   if(tags.some(t => t.includes(qNorm))) best = Math.max(best, 180);
@@ -589,10 +767,9 @@ function scoreWord(word, qNorm){
 
   return best;
 }
-
 function renderExamples(examples){
   if(!examples || !examples.length){
-    return `<div class="ex"><h4>Exemplos</h4><div class="exp">Sem exemplos ainda. (Adicione 3 frases com explicação.)</div></div>`;
+    return `<div class="ex"><h4>Exemplos</h4><div class="exp">Sem exemplos ainda.</div></div>`;
   }
   return examples.slice(0,3).map((e, idx)=>`
     <div class="ex">
@@ -606,170 +783,360 @@ function renderExamples(examples){
     </div>
   `).join("");
 }
-
 function renderResults(raw){
   const query = (raw ?? q.value).trim();
   results.innerHTML = "";
 
   if(!query){
-    results.innerHTML = `<div class="card"><div class="mean" style="color:var(--muted)">Digite algo para buscar. Ex.: 食べる / げんき / “atrasar”.</div></div>`;
+    results.innerHTML = `<div class="card"><div class="mean" style="color:var(--muted)">Digite algo para buscar.</div></div>`;
     return;
   }
 
   const qNorm = normalize(query);
-
   const ranked = WORDS
     .map(w => ({ w, s: scoreWord(w, qNorm) }))
     .filter(x => x.s > 0)
     .sort((a,b)=> b.s - a.s);
 
   if(!ranked.length){
-    results.innerHTML = `
-      <div class="card">
-        <div class="mean">Nenhum resultado para “${escapeHtml(query)}”.</div>
-        <div class="hira">
-          Se você clicou num kanji, ainda não existe ficha dele no dicionário.
-          (Depois você adiciona uma entrada em WORDS com 3 frases.)
-        </div>
-      </div>`;
+    results.innerHTML = `<div class="card"><div class="mean">Nenhum resultado para “${escapeHtml(query)}”.</div></div>`;
     return;
   }
 
   const exact = ranked.filter(x => isExactHeadword(x.w, qNorm));
   const nonExact = ranked.filter(x => !isExactHeadword(x.w, qNorm));
-
   const onlyExact = !!onlyExactEl.checked;
   const finalList = exact.length ? (onlyExact ? exact : [...exact, ...nonExact]) : ranked;
 
-  // Cabeçalho
   const header = document.createElement("div");
   header.className = "card";
   header.innerHTML = `
-    <div class="mean">
-      Busca: <b>${escapeHtml(query)}</b> — resultados: <b>${finalList.length}</b>
+    <div class="mean">Busca: <b>${escapeHtml(query)}</b> — resultados: <b>${finalList.length}</b>
       ${exact.length ? `&nbsp;&nbsp;<span class="badge exact">exato encontrado</span>` : ``}
     </div>
-    <div class="hira">
-      Dica: se quiser só a entrada exata, marque “só exato (quando houver)”.
-    </div>
+    <div class="hira">Dica: marque “só exato (quando houver)” para foco.</div>
   `;
   results.appendChild(header);
 
-  // Render top 30 por performance
-  const LIMIT = 30;
+  const LIMIT = 20;
   finalList.slice(0, LIMIT).forEach(item=>{
     const w = item.w;
     const isExact = isExactHeadword(w, qNorm);
-
-    const levelBadges = (w.tags || []).map(t=>{
-      const low = (t || "").toString().toLowerCase();
-      if(low === "n5") return `<span class="badge n5">N5</span>`;
-      if(low === "n4") return `<span class="badge n4">N4</span>`;
+    const card = document.createElement("div");
+    card.className = "card" + (isExact ? " exact" : "");
+    const badges = (w.tags||[]).map(t=>{
+      const low = (t||"").toString().toLowerCase();
+      if(low==="n5") return `<span class="badge n5">N5</span>`;
+      if(low==="n4") return `<span class="badge n4">N4</span>`;
       return `<span class="badge tag">${escapeHtml(t)}</span>`;
     }).join("");
 
-    const card = document.createElement("div");
-    card.className = "card" + (isExact ? " exact" : "");
     card.innerHTML = `
       <div class="jp">${escapeHtml(w.jp)}</div>
       <div class="hira">${escapeHtml(w.hira || "—")}</div>
       <div class="mean">(${escapeHtml(w.tipo || "—")}) — ${escapeHtml(w.mean || "—")}</div>
       <div class="badges">
         ${isExact ? `<span class="badge exact">resultado exato</span>` : ``}
-        ${levelBadges}
+        ${badges}
       </div>
       ${renderExamples(w.examples || [])}
     `;
     results.appendChild(card);
   });
+}
 
-  if(finalList.length > LIMIT){
-    const more = document.createElement("div");
-    more.className = "card";
-    more.innerHTML = `
-      <div class="mean">Mostrando os <b>${LIMIT}</b> melhores resultados (de ${finalList.length}).</div>
-      <div class="hira">Refine a busca: use kana/kanji exatos (ex.: まにあう / 間に合う) ou PT específico.</div>
-    `;
-    results.appendChild(more);
+let debounceTimer=null;
+q.addEventListener("input", ()=>{
+  clearTimeout(debounceTimer);
+  debounceTimer=setTimeout(()=>renderResults(q.value),80);
+});
+onlyExactEl.addEventListener("change", ()=> renderResults(q.value));
+
+document.getElementById("btnClear").addEventListener("click", ()=>{
+  q.value=""; renderResults(""); q.focus();
+});
+document.getElementById("btnRandom").addEventListener("click", ()=>{
+  if(!WORDS.length) return;
+  const pick = WORDS[Math.floor(Math.random()*WORDS.length)];
+  q.value = pick.jp; renderResults(pick.jp);
+});
+document.getElementById("btnGoKanji").addEventListener("click", ()=> openTab("kanji"));
+document.getElementById("btnGoQuiz").addEventListener("click", ()=> openTab("quiz"));
+
+/* =========================
+   Stroke order (KanjiVG SVG)
+   ========================= */
+function codepointHex5(ch){
+  const hex = ch.codePointAt(0).toString(16);
+  return hex.padStart(5,"0");
+}
+async function loadKanjiStrokeSVG(kanji, targetEl){
+  // KanjiVG via jsDelivr (SVG)
+  const hex = codepointHex5(kanji);
+  const url = `https://cdn.jsdelivr.net/gh/KanjiVG/kanjivg@master/kanji/${hex}.svg`;
+
+  targetEl.innerHTML = `<div class="small">Carregando stroke order...</div>`;
+  try{
+    const res = await fetch(url, {cache:"force-cache"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const svgText = await res.text();
+
+    // limpa atributos que podem quebrar layout e força responsivo
+    const cleaned = svgText
+      .replace(/width="[^"]*"/g,'')
+      .replace(/height="[^"]*"/g,'')
+      .replace(/<\?xml[^>]*\?>/g,'');
+
+    targetEl.innerHTML = cleaned;
+  }catch(err){
+    targetEl.innerHTML = `
+      <div class="small">
+        Não consegui carregar o SVG agora. <br>
+        (1) verifique sua conexão <br>
+        (2) recarregue a página (Ctrl+F5) <br>
+        (3) clique em “Recarregar” aqui.
+      </div>`;
   }
 }
 
 /* =========================
-   KANJI GRID
+   Kanji tab: grid + details
    ========================= */
+const kanjigrid = document.getElementById("kanjigrid");
+const kdBox = document.getElementById("kanjiDetail");
+const kdEmpty = document.getElementById("kanjiDetailEmpty");
+const kdKanji = document.getElementById("kdKanji");
+const kdReadings = document.getElementById("kdReadings");
+const kdMean = document.getElementById("kdMean");
+const kdBadges = document.getElementById("kdBadges");
+const kdStroke = document.getElementById("kdStroke");
+let currentKanjiSelected = null;
+
 function renderKanjiGrid(){
   kanjigrid.innerHTML = "";
-
-  // Ordem já vem N5→N4; se quiser garantir:
-  const rank = (lvl)=> lvl === "N5" ? 0 : 1;
-  const list = [...KANJI_ORDER].sort((a,b)=> rank(a.lvl) - rank(b.lvl));
-
-  list.forEach(item=>{
+  // N5 primeiro (lista completa). Quando você expandir N4, pode criar outra lista.
+  KANJI_ORDER_N5.forEach(k=>{
     const div = document.createElement("div");
-    div.className = "kanjiitem";
-    div.innerHTML = `
-      <div class="k">${escapeHtml(item.k)}</div>
-      <div class="lvl"><b>${escapeHtml(item.lvl)}</b> ・ clique</div>
-    `;
-    div.addEventListener("click", ()=>{
-      openTab("dic");
-      q.value = item.k;
-      renderResults(item.k);
-      window.scrollTo({top:0, behavior:"smooth"});
-    });
+    div.className="kanjiitem";
+    div.innerHTML = `<div class="k">${escapeHtml(k)}</div><div class="lvl"><b>N5</b> ・ clique</div>`;
+    div.addEventListener("click", ()=> showKanjiDetail(k));
     kanjigrid.appendChild(div);
   });
 }
 
-/* =========================
-   TAB NAV
-   ========================= */
-function openTab(id){
-  Object.values(sections).forEach(s=>s.classList.remove("active"));
-  Object.values(tabs).forEach(t=>t.classList.remove("active"));
+function showKanjiDetail(k){
+  currentKanjiSelected = k;
+  const info = KANJI_INFO[k];
 
-  sections[id].classList.add("active");
-  tabs[id].classList.add("active");
+  kdEmpty.style.display="none";
+  kdBox.style.display="block";
 
-  if(id === "kanji") renderKanjiGrid();
-  if(id === "dic") setTimeout(()=>q.focus(), 0);
+  kdKanji.textContent = k;
+
+  if(info){
+    kdReadings.textContent = `Leituras: ${info.readings.join(" / ")}`;
+    kdMean.textContent = `Significado (PT): ${info.meanings.join(" / ")}`;
+    kdBadges.innerHTML = `<span class="badge n5">N5</span><span class="badge tag">kanji</span>`;
+  }else{
+    kdReadings.textContent = "Leituras: (não cadastrado ainda)";
+    kdMean.textContent = "Significado: (não cadastrado ainda)";
+    kdBadges.innerHTML = `<span class="badge tag">sem ficha</span>`;
+  }
+
+  loadKanjiStrokeSVG(k, kdStroke);
 }
 
+document.getElementById("kdReloadStroke").addEventListener("click", ()=>{
+  if(currentKanjiSelected) loadKanjiStrokeSVG(currentKanjiSelected, kdStroke);
+});
+document.getElementById("kdSearchDic").addEventListener("click", ()=>{
+  if(!currentKanjiSelected) return;
+  openTab("dic");
+  q.value = currentKanjiSelected;
+  renderResults(currentKanjiSelected);
+  window.scrollTo({top:0, behavior:"smooth"});
+});
+document.getElementById("kdGoQuiz").addEventListener("click", ()=>{
+  if(!currentKanjiSelected) return;
+  openTab("quiz");
+  setQuizKanji(currentKanjiSelected);
+});
+
 /* =========================
-   EVENTS (com debounce leve)
+   QUIZ: logic
    ========================= */
-let debounceTimer = null;
-function onSearchInput(){
-  clearTimeout(debounceTimer);
-  debounceTimer = setTimeout(()=> renderResults(q.value), 80);
+const quizOnlyN5 = document.getElementById("quizOnlyN5");
+const quizKanji = document.getElementById("quizKanji");
+const quizReading = document.getElementById("quizReading");
+const quizMeaning = document.getElementById("quizMeaning");
+const quizCheck = document.getElementById("quizCheck");
+const quizReveal = document.getElementById("quizReveal");
+const quizNext = document.getElementById("quizNext");
+const quizReset = document.getElementById("quizReset");
+const quizFeedback = document.getElementById("quizFeedback");
+const quizFeedbackTitle = document.getElementById("quizFeedbackTitle");
+const quizFeedbackDetail = document.getElementById("quizFeedbackDetail");
+const quizStroke = document.getElementById("quizStroke");
+const quizReloadStroke = document.getElementById("quizReloadStroke");
+const quizScore = document.getElementById("quizScore");
+const quizMode = document.getElementById("quizMode");
+
+let quizState = {
+  current: "一",
+  correct: 0,
+  wrong: 0,
+  streak: 0
+};
+
+function getQuizPool(){
+  // por enquanto só N5 (seus 80). Quando você adicionar N4, dá pra juntar.
+  return quizOnlyN5.checked ? KANJI_ORDER_N5 : KANJI_ORDER_N5;
 }
 
-q.addEventListener("input", onSearchInput);
-onlyExactEl.addEventListener("change", ()=> renderResults(q.value));
+function setQuizKanji(k){
+  quizState.current = k;
+  quizKanji.textContent = k;
+  quizReading.value = "";
+  quizMeaning.value = "";
+  hideQuizFeedback();
+  loadKanjiStrokeSVG(k, quizStroke); // pré-carrega pra ficar imediato quando revelar
+  updateQuizMode();
+}
 
-btnClear.addEventListener("click", ()=>{
-  q.value = "";
-  renderResults("");
-  q.focus();
+function randomFrom(arr){
+  return arr[Math.floor(Math.random()*arr.length)];
+}
+
+function nextQuizKanji(){
+  const pool = getQuizPool();
+  const k = randomFrom(pool);
+  setQuizKanji(k);
+}
+
+function updateQuizMode(){
+  quizMode.textContent = quizOnlyN5.checked ? "Modo: N5" : "Modo: N5+N4";
+}
+quizOnlyN5.addEventListener("change", ()=>{
+  updateQuizMode();
+  nextQuizKanji();
 });
 
-btnRandom.addEventListener("click", ()=>{
-  if(!WORDS.length) return;
-  const pick = WORDS[Math.floor(Math.random() * WORDS.length)];
-  q.value = pick.jp;
-  renderResults(pick.jp);
+function normalizeMeaning(s){
+  return normalize(s).replaceAll("ã","a").replaceAll("á","a").replaceAll("à","a").replaceAll("â","a")
+    .replaceAll("é","e").replaceAll("ê","e")
+    .replaceAll("í","i")
+    .replaceAll("ó","o").replaceAll("ô","o").replaceAll("õ","o")
+    .replaceAll("ú","u").replaceAll("ç","c");
+}
+
+function checkAnswerScore(){
+  const k = quizState.current;
+  const info = KANJI_INFO[k];
+  if(!info){
+    return {readingOk:false, meaningOk:false, readingCorrect:[], meaningCorrect:[]};
+  }
+
+  const userR = kataToHira(normalize(quizReading.value));
+  const userM = normalizeMeaning(quizMeaning.value);
+
+  const acceptedReadings = info.readings.map(r => kataToHira(normalize(r)));
+  const acceptedMeanings = info.meanings.map(m => normalizeMeaning(m));
+
+  const readingOk = userR && acceptedReadings.some(r => r === userR || r.startsWith(userR) || userR.startsWith(r));
+  const meaningOk = userM && acceptedMeanings.some(m => userM === m || userM.includes(m) || m.includes(userM));
+
+  return {readingOk, meaningOk, readingCorrect: info.readings, meaningCorrect: info.meanings};
+}
+
+function showQuizFeedback({readingOk, meaningOk, readingCorrect, meaningCorrect}, scored){
+  quizFeedback.style.display="block";
+
+  const k = quizState.current;
+  const rTxt = readingCorrect?.length ? readingCorrect.join(" / ") : "—";
+  const mTxt = meaningCorrect?.length ? meaningCorrect.join(" / ") : "—";
+
+  const okAll = readingOk && meaningOk;
+
+  if(scored){
+    if(okAll){
+      quizFeedbackTitle.innerHTML = `✅ <b>Acertou!</b>`;
+    }else{
+      quizFeedbackTitle.innerHTML = `❌ <b>Errou.</b>`;
+    }
+  }else{
+    quizFeedbackTitle.innerHTML = `👁️ <b>Revelado</b> (sem pontuar)`;
+  }
+
+  quizFeedbackDetail.innerHTML = `
+    Kanji: <b>${escapeHtml(k)}</b><br>
+    Leitura correta: <b>${escapeHtml(rTxt)}</b> ${readingOk ? "✅" : "❌"}<br>
+    Significado correto: <b>${escapeHtml(mTxt)}</b> ${meaningOk ? "✅" : "❌"}
+  `;
+}
+
+function hideQuizFeedback(){
+  quizFeedback.style.display="none";
+  quizFeedbackTitle.textContent="";
+  quizFeedbackDetail.textContent="";
+}
+
+function updateScoreUI(){
+  quizScore.textContent = `Acertos: ${quizState.correct} · Erros: ${quizState.wrong} · Streak: ${quizState.streak}`;
+}
+
+quizCheck.addEventListener("click", ()=>{
+  const res = checkAnswerScore();
+  const okAll = res.readingOk && res.meaningOk;
+
+  if(okAll){
+    quizState.correct += 1;
+    quizState.streak += 1;
+  }else{
+    quizState.wrong += 1;
+    quizState.streak = 0;
+  }
+  updateScoreUI();
+
+  showQuizFeedback(res, true);
+  // garante stroke no feedback
+  loadKanjiStrokeSVG(quizState.current, quizStroke);
 });
 
-btnGoKanji.addEventListener("click", ()=> openTab("kanji"));
+quizReveal.addEventListener("click", ()=>{
+  const res = checkAnswerScore();
+  showQuizFeedback(res, false);
+  loadKanjiStrokeSVG(quizState.current, quizStroke);
+});
 
+quizNext.addEventListener("click", ()=> nextQuizKanji());
+
+quizReset.addEventListener("click", ()=>{
+  quizState.correct = 0;
+  quizState.wrong = 0;
+  quizState.streak = 0;
+  updateScoreUI();
+  nextQuizKanji();
+});
+
+quizReloadStroke.addEventListener("click", ()=>{
+  loadKanjiStrokeSVG(quizState.current, quizStroke);
+});
+
+/* =========================
+   Tab events
+   ========================= */
 tabs.dic.addEventListener("click", ()=> openTab("dic"));
 tabs.kanji.addEventListener("click", ()=> openTab("kanji"));
+tabs.quiz.addEventListener("click", ()=> openTab("quiz"));
 tabs.about.addEventListener("click", ()=> openTab("about"));
 
 /* =========================
    INIT
    ========================= */
 renderResults("");
+updateScoreUI();
+updateQuizMode();
+setQuizKanji("一");
 </script>
 
 </body>
