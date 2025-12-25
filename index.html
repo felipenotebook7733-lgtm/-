@@ -1,50 +1,63 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>JLPT N4 – Curso Completo</title>
+<title>ヴァンパイア全知全能</title>
 
 <style>
-:root {
-    --bg:#f6f7f9;
-    --white:#fff;
-    --text:#1f2328;
-    --muted:#57606a;
-    --accent:#0969da;
-    --border:#d0d7de;
+:root{
+    --bg:#0f1115;
+    --panel:#151922;
+    --text:#e6e8ee;
+    --muted:#9aa0aa;
+    --accent:#b33cff;
+    --border:#242836;
 }
 
 *{box-sizing:border-box}
 
 body{
     margin:0;
-    font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+    font-family: "Yu Gothic","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
     background:var(--bg);
     color:var(--text);
+    line-height:1.9;
 }
 
 header{
-    background:var(--white);
+    background:var(--panel);
     border-bottom:1px solid var(--border);
 }
 
 .container{
     max-width:1200px;
     margin:auto;
-    padding:20px;
+    padding:24px;
+}
+
+h1{
+    margin:0;
+    font-size:32px;
+    letter-spacing:2px;
+}
+
+.subtitle{
+    color:var(--muted);
+    margin-top:6px;
 }
 
 nav{
+    margin-top:20px;
     display:flex;
-    gap:30px;
+    gap:28px;
     flex-wrap:wrap;
 }
 
 nav a{
-    text-decoration:none;
     color:var(--muted);
+    text-decoration:none;
     font-weight:500;
-    padding-bottom:8px;
+    padding-bottom:6px;
     border-bottom:2px solid transparent;
 }
 
@@ -53,64 +66,62 @@ nav a.active{
     border-color:var(--accent);
 }
 
-.section{display:none}
-.section.active{display:block}
-
-.card{
-    background:var(--white);
-    border:1px solid var(--border);
-    border-radius:10px;
-    padding:24px;
-    margin-bottom:24px;
+.section{
+    display:none;
 }
 
-h2{margin-top:0}
+.section.active{
+    display:block;
+}
 
-.jp{font-size:22px;font-weight:600}
-.read{color:var(--muted);margin-top:4px}
-.pt{margin-top:10px}
+.card{
+    background:var(--panel);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:28px;
+    margin-bottom:28px;
+}
+
+.jp{
+    font-size:22px;
+    font-weight:600;
+}
+
+.pt{
+    margin-top:14px;
+}
+
+.analysis{
+    margin-top:20px;
+    padding-top:20px;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+}
 
 button{
-    margin-top:12px;
+    margin-top:16px;
     background:none;
     border:none;
     color:var(--accent);
     cursor:pointer;
-    padding:0;
     font-size:14px;
+    padding:0;
 }
 
-.details{
+.hidden{
     display:none;
-    margin-top:14px;
-    padding-top:14px;
-    border-top:1px solid var(--border);
-    color:var(--muted);
-    line-height:1.7;
 }
-
-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:10px;
-}
-th,td{
-    border:1px solid var(--border);
-    padding:10px;
-    text-align:left;
-}
-th{background:#f0f1f3}
 
 footer{
     text-align:center;
     color:var(--muted);
     padding:40px 0;
-    font-size:14px;
+    font-size:13px;
 }
 </style>
 
 <script>
-function openSection(id,el){
+function openTab(id,el){
     document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
     document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -118,7 +129,7 @@ function openSection(id,el){
 }
 function toggle(id){
     const e=document.getElementById(id);
-    e.style.display=e.style.display==='block'?'none':'block';
+    e.classList.toggle('hidden');
 }
 </script>
 </head>
@@ -127,252 +138,127 @@ function toggle(id){
 
 <header>
 <div class="container">
+<h1>ヴァンパイア全知全能</h1>
+<div class="subtitle">知識・言語・読解の深層記録</div>
+
 <nav>
-<a href="#" class="active" onclick="openSection('inicio',this)">Início</a>
-<a href="#" onclick="openSection('gramatica',this)">Gramática</a>
-<a href="#" onclick="openSection('vocab',this)">Vocabulário</a>
-<a href="#" onclick="openSection('kanji',this)">Kanji</a>
-<a href="#" onclick="openSection('leitura',this)">Leitura</a>
+<a href="#" class="active" onclick="openTab('intro',this)">序章</a>
+<a href="#" onclick="openTab('texto1',this)">第一章</a>
+<a href="#" onclick="openTab('texto2',this)">第二章</a>
+<a href="#" onclick="openTab('analise',this)">文法・語彙</a>
 </nav>
 </div>
 </header>
 
 <main class="container">
 
-<!-- INÍCIO -->
-<section id="inicio" class="section active">
-<div class="card">
-<h2>JLPT N4 – Curso Completo</h2>
-<p>
-Este site reúne o conteúdo essencial do JLPT N4:
-gramática, vocabulário, kanji e leitura.
-Material direto, organizado e feito para estudo real.
-</p>
-</div>
-</section>
-
-<!-- GRAMÁTICA -->
-<section id="gramatica" class="section">
-
-<div class="card">
-<div class="jp">～ようになる</div>
-<div class="read">Mudança gradual</div>
-<div class="pt">Indica algo que passou a ser possível com o tempo.</div>
-<button onclick="toggle('g1')">Explicação</button>
-<div id="g1" class="details">
-Forma: verbo dicionário + ようになる<br><br>
-日本語が話せるようになりました。<br>
-Passei a conseguir falar japonês.
-</div>
-</div>
-
-<div class="card">
-<div class="jp">～てしまう</div>
-<div class="read">Conclusão / arrependimento</div>
-<div class="pt">Ação concluída ou feita sem intenção.</div>
-<button onclick="toggle('g2')">Explicação</button>
-<div id="g2" class="details">
-Forma: verbo て + しまう<br><br>
-財布を忘れてしまいました。<br>
-Acabei esquecendo a carteira.
-</div>
-</div>
-
-<div class="card">
-<div class="jp">～ながら</div>
-<div class="read">Ações simultâneas</div>
-<div class="pt">Duas ações feitas ao mesmo tempo pelo mesmo sujeito.</div>
-<button onclick="toggle('g3')">Explicação</button>
-<div id="g3" class="details">
-Forma: verbo masu → masu removido + ながら<br><br>
-音楽を聞きながら勉強します。
-</div>
-</div>
-
-<div class="card">
-<div class="jp">～ば / ～たら</div>
-<div class="read">Condicional</div>
-<div class="pt">Expressa condição: se / quando.</div>
-<button onclick="toggle('g4')">Explicação</button>
-<div id="g4" class="details">
-雨が降ったら、家にいます。<br>
-Se chover, fico em casa.
-</div>
-</div>
-
-<div class="card">
-<div class="jp">～そうです（見た目）</div>
-<div class="read">aparência</div>
-<div class="pt">Expressa algo que parece ser de acordo com a aparência.</div>
-<button onclick="toggle('g4')">Explicação detalhada</button>
-<div id="g4" class="details">
-📌 Forma:<br>
-Adjetivo い → remove い + そうです<br>
-Adjetivo な + そうです<br><br>
-
-📌 Exemplo:<br>
-このケーキはおいしそうです。<br><br>
-
-🔎 Linha a linha:<br>
-この → este<br>
-ケーキは → bolo<br>
-おいしそう → parece gostoso
-</div>
-</div>
-
-<div class="card">
-<div class="jp">～はずです</div>
-<div class="read">expectativa lógica</div>
-<div class="pt">Algo que deveria ser verdade segundo a lógica.</div>
-<button onclick="toggle('g5')">Explicação detalhada</button>
-<div id="g5" class="details">
-📌 Uso:<br>
-Usado quando há uma base lógica ou informação prévia.<br><br>
-
-📌 Exemplo:<br>
-彼はもう家にいるはずです。<br><br>
-
-🔎 Linha a linha:<br>
-彼は → ele<br>
-もう → já<br>
-家にいる → estar em casa<br>
-はずです → deve estar
-</div>
-</div>
-
-<div class="card">
-<div class="jp">～かもしれません</div>
-<div class="read">possibilidade</div>
-<div class="pt">Expressa incerteza: talvez.</div>
-<button onclick="toggle('g6')">Explicação detalhada</button>
-<div id="g6" class="details">
-📌 Uso:<br>
-Usado quando não se tem certeza.<br><br>
-
-📌 Exemplo:<br>
-明日は雨が降るかもしれません。<br><br>
-
-🔎 Linha a linha:<br>
-明日は → amanhã<br>
-雨が降る → chover<br>
-かもしれません → talvez
-</div>
-</div>
-
-<div class="card">
-<div class="jp">～ておく</div>
-<div class="read">preparação</div>
-<div class="pt">Fazer algo antecipadamente para o futuro.</div>
-<button onclick="toggle('g7')">Explicação detalhada</button>
-<div id="g7" class="details">
-📌 Forma:<br>
-Verbo て + おく<br><br>
-
-📌 Exemplo:<br>
-旅行の前にホテルを予約しておきます。<br><br>
-
-🔎 Linha a linha:<br>
-旅行の前に → antes da viagem<br>
-ホテルを → hotel<br>
-予約しておく → reservar antecipadamente
-</div>
-</div>
-    
-</section>
-
-<!-- VOCAB -->
-<section id="vocab" class="section">
-
-<div class="card">
-<h2>Vocabulário Essencial N4</h2>
-<table>
-<tr><th>Japonês</th><th>Leitura</th><th>Significado</th></tr>
-<tr><td>続ける</td><td>つづける</td><td>Continuar</td></tr>
-<tr><td>決める</td><td>きめる</td><td>Decidir</td></tr>
-<tr><td>増える</td><td>ふえる</td><td>Aumentar</td></tr>
-<tr><td>減る</td><td>へる</td><td>Diminuir</td></tr>
-<tr><td>困る</td><td>こまる</td><td>Ter dificuldade</td></tr>
-<tr><td>必要</td><td>ひつよう</td><td>Necessário</td></tr>
-<tr><td>安全</td><td>あんぜん</td><td>Seguro</td></tr>
-<tr><td>始める</td><td>はじめる</td><td>Começar</td></tr>
-<tr><td>終わる</td><td>おわる</td><td>Terminar</td></tr>
-<tr><td>予定</td><td>よてい</td><td>Plano / programação</td></tr>
-<tr><td>準備</td><td>じゅんび</td><td>Preparação</td></tr>
-<tr><td>経験</td><td>けいけん</td><td>Experiência</td></tr>
-<tr><td>理由</td><td>りゆう</td><td>Motivo</td></tr>
-<tr><td>説明</td><td>せつめい</td><td>Explicação</td></tr>
-<tr><td>安心</td><td>あんしん</td><td>Alívio / tranquilidade</td></tr>
-
-</table>
-</div>
-
-</section>
-
-<!-- KANJI -->
-<section id="kanji" class="section">
-
-<div class="card">
-<h2>Kanji N4 (amostra representativa)</h2>
-<table>
-<tr><th>Kanji</th><th>Leitura</th><th>Significado</th></tr>
-<tr><td>考</td><td>かんがえる</td><td>Pensar</td></tr>
-<tr><td>使</td><td>つかう</td><td>Usar</td></tr>
-<tr><td>始</td><td>はじめる</td><td>Começar</td></tr>
-<tr><td>終</td><td>おわる</td><td>Terminar</td></tr>
-<tr><td>場</td><td>ば</td><td>Lugar</td></tr>
-<tr><td>旅</td><td>たび</td><td>Viagem</td></tr>
-</table>
-</div>
-
-</section>
-
-<!-- LEITURA -->
-<section id="leitura" class="section">
+<!-- ================= 序章 ================= -->
+<section id="intro" class="section active">
 
 <div class="card">
 <div class="jp">
-私は三年前に日本へ来ました。<br>
-来たばかりの頃は、日本語があまり分からなくて、<br>
-生活でとても困っていました。<br>
-しかし、毎日勉強して、少しずつ分かるようになりました。
+ヴァンパイア全知全能とは、<br>
+すべてを観察し、すべてを記録し、<br>
+言葉の奥に潜む意味を理解する存在である。
 </div>
 
-<button onclick="toggle('l1')">Ver tradução</button>
-<div id="l1" class="details">
-Eu vim ao Japão há três anos.<br>
-Quando tinha acabado de chegar, não entendia muito japonês
-e tinha dificuldades na vida diária.<br>
-Porém, estudando todos os dias, passei a entender aos poucos.
+<button onclick="toggle('i1')">解説を表示</button>
+
+<div id="i1" class="analysis hidden">
+🔍 **Linha a linha:**<br><br>
+
+ヴァンパイア → vampiro (metáfora do observador eterno)<br>
+全知全能 → onisciente e onipotente<br><br>
+
+とは → define o conceito<br>
+すべてを観察し → observar tudo<br>
+すべてを記録し → registrar tudo<br>
+言葉の奥に潜む意味 → significados ocultos das palavras<br>
+理解する存在 → entidade que compreende
 </div>
 </div>
+
+</section>
+
+<!-- ================= 第一章 ================= -->
+<section id="texto1" class="section">
 
 <div class="card">
 <div class="jp">
-昨日、友だちと映画を見に行きました。<br>
-映画はとても面白くて、<br>
-時間があっという間に過ぎました。
+人は言葉を使って考える。<br>
+言葉を失えば、思考は曖昧になる。<br>
+だからこそ、言語を学ぶことは、<br>
+自分自身を再構築する行為である。
 </div>
 
-<button onclick="toggle('l2')">Tradução + análise</button>
-<div id="l2" class="details">
-🔎 Linha a linha:<br><br>
-昨日 → ontem<br>
-友だちと → com amigo<br>
-映画を見に行きました → fui assistir um filme<br><br>
+<button onclick="toggle('t1')">詳細解説</button>
 
-とても面白くて → muito interessante<br>
-時間が → o tempo<br>
-あっという間に → rapidamente<br>
-過ぎました → passou
+<div id="t1" class="analysis hidden">
+🧠 **Explicação detalhada:**<br><br>
+
+人は言葉を使って考える  
+→ O pensamento humano depende da linguagem.<br><br>
+
+言葉を失えば、思考は曖昧になる  
+→ Sem vocabulário, o pensamento perde precisão.<br><br>
+
+だからこそ  
+→ Conector lógico: “por isso mesmo”.<br><br>
+
+言語を学ぶことは、自分自身を再構築する行為  
+→ Aprender uma língua é reconstruir a própria mente.
 </div>
 </div>
-    
+
+</section>
+
+<!-- ================= 第二章 ================= -->
+<section id="texto2" class="section">
+
+<div class="card">
+<div class="jp">
+日本語は、沈黙を尊重する言語である。<br>
+語られない部分に、最も重要な意味が宿る。
+</div>
+
+<button onclick="toggle('t2')">詳細解説</button>
+
+<div id="t2" class="analysis hidden">
+🔎 **Linha a linha:**<br><br>
+
+日本語は → quanto ao japonês<br>
+沈黙を尊重する → respeitar o silêncio<br>
+言語である → é uma língua que…<br><br>
+
+語られない部分 → o que não é dito<br>
+最も重要な意味 → o significado mais importante<br>
+宿る → habitar, residir (uso abstrato)
+</div>
+</div>
+
+</section>
+
+<!-- ================= 文法・語彙 ================= -->
+<section id="analise" class="section">
+
+<div class="card">
+<div class="jp">重要語彙・構造</div>
+
+<div class="analysis">
+全知全能（ぜんちぜんのう）→ onisciente e onipotente<br>
+潜む（ひそむ）→ esconder-se, estar latente<br>
+曖昧（あいまい）→ vago, ambíguo<br>
+尊重（そんちょう）→ respeitar<br>
+宿る（やどる）→ habitar (conceito abstrato)
+</div>
+</div>
+
 </section>
 
 </main>
 
 <footer>
-JLPT N4 – Site de estudo completo
+ヴァンパイア全知全能 — Arquivo de leitura e análise
 </footer>
 
 </body>
