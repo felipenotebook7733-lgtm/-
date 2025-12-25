@@ -1,165 +1,271 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Estudos Completos de Japonês</title>
+<meta charset="UTF-8">
+<title>JLPT N4 – Curso Completo</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            max-width: 900px;
-            margin: auto;
-            padding: 20px;
-            line-height: 1.8;
-        }
+<style>
+:root {
+    --bg:#f6f7f9;
+    --white:#fff;
+    --text:#1f2328;
+    --muted:#57606a;
+    --accent:#0969da;
+    --border:#d0d7de;
+}
 
-        h1, h2 {
-            color: #222;
-        }
+*{box-sizing:border-box}
 
-        .box {
-            background: #ffffff;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-        }
+body{
+    margin:0;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
 
-        .jp {
-            font-size: 22px;
-            font-weight: bold;
-        }
+header{
+    background:var(--white);
+    border-bottom:1px solid var(--border);
+}
 
-        .reading {
-            color: #0066cc;
-        }
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
+}
 
-        .pt {
-            color: #444;
-        }
+nav{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+}
 
-        .ex {
-            margin-top: 10px;
-            background: #f0f0f0;
-            padding: 10px;
-            border-radius: 5px;
-        }
-    </style>
+nav a{
+    text-decoration:none;
+    color:var(--muted);
+    font-weight:500;
+    padding-bottom:8px;
+    border-bottom:2px solid transparent;
+}
+
+nav a.active{
+    color:var(--accent);
+    border-color:var(--accent);
+}
+
+.section{display:none}
+.section.active{display:block}
+
+.card{
+    background:var(--white);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:24px;
+    margin-bottom:24px;
+}
+
+h2{margin-top:0}
+
+.jp{font-size:22px;font-weight:600}
+.read{color:var(--muted);margin-top:4px}
+.pt{margin-top:10px}
+
+button{
+    margin-top:12px;
+    background:none;
+    border:none;
+    color:var(--accent);
+    cursor:pointer;
+    padding:0;
+    font-size:14px;
+}
+
+.details{
+    display:none;
+    margin-top:14px;
+    padding-top:14px;
+    border-top:1px solid var(--border);
+    color:var(--muted);
+    line-height:1.7;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:10px;
+}
+th,td{
+    border:1px solid var(--border);
+    padding:10px;
+    text-align:left;
+}
+th{background:#f0f1f3}
+
+footer{
+    text-align:center;
+    color:var(--muted);
+    padding:40px 0;
+    font-size:14px;
+}
+</style>
+
+<script>
+function openSection(id,el){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    el.classList.add('active');
+}
+function toggle(id){
+    const e=document.getElementById(id);
+    e.style.display=e.style.display==='block'?'none':'block';
+}
+</script>
 </head>
 
 <body>
 
-<h1>📘 Japonês – Conteúdo Completo com Explicações</h1>
+<header>
+<div class="container">
+<nav>
+<a href="#" class="active" onclick="openSection('inicio',this)">Início</a>
+<a href="#" onclick="openSection('gramatica',this)">Gramática</a>
+<a href="#" onclick="openSection('vocab',this)">Vocabulário</a>
+<a href="#" onclick="openSection('kanji',this)">Kanji</a>
+<a href="#" onclick="openSection('leitura',this)">Leitura</a>
+</nav>
+</div>
+</header>
 
-<div class="box">
-    <h2>① 八つ当たり</h2>
-    <div class="jp">八つ当たり</div>
-    <div class="reading">やつあたり (yatsu-atari)</div>
-    <div class="pt">
-        Significa <strong>descontar a raiva em alguém que não tem culpa</strong>.
-    </div>
+<main class="container">
 
-    <div class="ex">
-        🔎 Explicação:<br>
-        八つ = coisas diversas / qualquer coisa<br>
-        当たり = atingir, bater<br>
-        → Bater/descontar em qualquer um.
-    </div>
+<!-- INÍCIO -->
+<section id="inicio" class="section active">
+<div class="card">
+<h2>JLPT N4 – Curso Completo</h2>
+<p>
+Este site reúne o conteúdo essencial do JLPT N4:
+gramática, vocabulário, kanji e leitura.
+Material direto, organizado e feito para estudo real.
+</p>
+</div>
+</section>
 
-    <div class="ex">
-        📝 Exemplo:<br>
-        彼は仕事のストレスを家族に八つ当たりした。<br>
-        Ele descontou o estresse do trabalho na família.
-    </div>
+<!-- GRAMÁTICA -->
+<section id="gramatica" class="section">
+
+<div class="card">
+<div class="jp">～ようになる</div>
+<div class="read">Mudança gradual</div>
+<div class="pt">Indica algo que passou a ser possível com o tempo.</div>
+<button onclick="toggle('g1')">Explicação</button>
+<div id="g1" class="details">
+Forma: verbo dicionário + ようになる<br><br>
+日本語が話せるようになりました。<br>
+Passei a conseguir falar japonês.
+</div>
 </div>
 
-<div class="box">
-    <h2>② 暗い</h2>
-    <div class="jp">暗い</div>
-    <div class="reading">くらい (kurai)</div>
-    <div class="pt">
-        Escuro / Triste / Negativo (dependendo do contexto).
-    </div>
-
-    <div class="ex">
-        📝 Usos comuns:<br>
-        暗い部屋 → quarto escuro<br>
-        暗い性格 → personalidade sombria<br>
-        暗い話 → assunto pesado
-    </div>
+<div class="card">
+<div class="jp">～てしまう</div>
+<div class="read">Conclusão / arrependimento</div>
+<div class="pt">Ação concluída ou feita sem intenção.</div>
+<button onclick="toggle('g2')">Explicação</button>
+<div id="g2" class="details">
+Forma: verbo て + しまう<br><br>
+財布を忘れてしまいました。<br>
+Acabei esquecendo a carteira.
+</div>
 </div>
 
-<div class="box">
-    <h2>③ 暗い気持ちになる</h2>
-    <div class="jp">暗い気持ちになる</div>
-    <div class="reading">くらいきもちになる</div>
-    <div class="pt">
-        Ficar triste / desanimado emocionalmente.
-    </div>
-
-    <div class="ex">
-        📝 Exemplo:<br>
-        ニュースを見て暗い気持ちになった。<br>
-        Fiquei triste ao ver as notícias.
-    </div>
+<div class="card">
+<div class="jp">～ながら</div>
+<div class="read">Ações simultâneas</div>
+<div class="pt">Duas ações feitas ao mesmo tempo pelo mesmo sujeito.</div>
+<button onclick="toggle('g3')">Explicação</button>
+<div id="g3" class="details">
+Forma: verbo masu → masu removido + ながら<br><br>
+音楽を聞きながら勉強します。
+</div>
 </div>
 
-<div class="box">
-    <h2>④ 差し込む</h2>
-    <div class="jp">差し込む</div>
-    <div class="reading">さしこむ (sashikomu)</div>
-    <div class="pt">
-        Entrar de repente (luz, vento, som, cartão, pergunta).
-    </div>
-
-    <div class="ex">
-        📝 Exemplos:<br>
-        木立の間から日差しが差し込む。<br>
-        A luz do sol entra por entre as árvores.<br><br>
-
-        カードを機械に差し込んでください。<br>
-        Insira o cartão na máquina.
-    </div>
+<div class="card">
+<div class="jp">～ば / ～たら</div>
+<div class="read">Condicional</div>
+<div class="pt">Expressa condição: se / quando.</div>
+<button onclick="toggle('g4')">Explicação</button>
+<div id="g4" class="details">
+雨が降ったら、家にいます。<br>
+Se chover, fico em casa.
+</div>
 </div>
 
-<div class="box">
-    <h2>⑤ Texto completo (estilo NHK Easy)</h2>
+</section>
 
-    <div class="jp">
-        私は三年前に日本へ来ました。<br>
-        来たばかりの頃は、日本語があまり分からなくて、<br>
-        買い物や仕事でとても困っていました。
-    </div>
+<!-- VOCAB -->
+<section id="vocab" class="section">
 
-    <div class="pt">
-        Eu vim ao Japão há três anos.<br>
-        Quando tinha acabado de chegar, não entendia muito japonês,<br>
-        e tinha muitas dificuldades em compras e no trabalho.
-    </div>
-
-    <div class="ex">
-        🔎 Explicação:<br>
-        来たばかり = logo depois de chegar<br>
-        あまり〜ない = não muito<br>
-        困っていました = estava passando dificuldades
-    </div>
+<div class="card">
+<h2>Vocabulário Essencial N4</h2>
+<table>
+<tr><th>Japonês</th><th>Leitura</th><th>Significado</th></tr>
+<tr><td>続ける</td><td>つづける</td><td>Continuar</td></tr>
+<tr><td>決める</td><td>きめる</td><td>Decidir</td></tr>
+<tr><td>増える</td><td>ふえる</td><td>Aumentar</td></tr>
+<tr><td>減る</td><td>へる</td><td>Diminuir</td></tr>
+<tr><td>困る</td><td>こまる</td><td>Ter dificuldade</td></tr>
+<tr><td>必要</td><td>ひつよう</td><td>Necessário</td></tr>
+<tr><td>安全</td><td>あんぜん</td><td>Seguro</td></tr>
+</table>
 </div>
 
-<div class="box">
-    <h2>⑥ Vocabulário essencial</h2>
+</section>
 
-    <div class="jp">
-        電気代 → でんきだい → conta de luz<br>
-        水道代 → すいどうだい → conta de água<br>
-        ガス代 → ガスだい → conta de gás
-    </div>
+<!-- KANJI -->
+<section id="kanji" class="section">
 
-    <div class="ex">
-        📝 Frase:<br>
-        電気代と水道代とガス代が高い。<br>
-        As contas de luz, água e gás estão altas.
-    </div>
+<div class="card">
+<h2>Kanji N4 (amostra representativa)</h2>
+<table>
+<tr><th>Kanji</th><th>Leitura</th><th>Significado</th></tr>
+<tr><td>考</td><td>かんがえる</td><td>Pensar</td></tr>
+<tr><td>使</td><td>つかう</td><td>Usar</td></tr>
+<tr><td>始</td><td>はじめる</td><td>Começar</td></tr>
+<tr><td>終</td><td>おわる</td><td>Terminar</td></tr>
+<tr><td>場</td><td>ば</td><td>Lugar</td></tr>
+<tr><td>旅</td><td>たび</td><td>Viagem</td></tr>
+</table>
 </div>
+
+</section>
+
+<!-- LEITURA -->
+<section id="leitura" class="section">
+
+<div class="card">
+<div class="jp">
+私は三年前に日本へ来ました。<br>
+来たばかりの頃は、日本語があまり分からなくて、<br>
+生活でとても困っていました。<br>
+しかし、毎日勉強して、少しずつ分かるようになりました。
+</div>
+
+<button onclick="toggle('l1')">Ver tradução</button>
+<div id="l1" class="details">
+Eu vim ao Japão há três anos.<br>
+Quando tinha acabado de chegar, não entendia muito japonês
+e tinha dificuldades na vida diária.<br>
+Porém, estudando todos os dias, passei a entender aos poucos.
+</div>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+JLPT N4 – Site de estudo completo
+</footer>
 
 </body>
 </html>
