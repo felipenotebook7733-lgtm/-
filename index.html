@@ -13,8 +13,8 @@
   --muted:#9aa0aa;
   --muted2:#7b8192;
 
-  /* tema dinâmico (muda com desempenho) */
-  --moodHue: 195;          /* base: azul/ciano */
+  /* tema dinâmico */
+  --moodHue: 195; /* base ciano */
   --accent2: hsl(var(--moodHue) 85% 60%);
   --accent:  hsl(calc(var(--moodHue) - 40) 85% 62%);
   --accent3: hsl(calc(var(--moodHue) + 70) 85% 62%);
@@ -34,13 +34,11 @@ body{
   color:var(--text);
   font-family:"Yu Gothic","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
   line-height:1.95;
-
   background:
     radial-gradient(1200px 700px at 10% 10%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 55%),
     radial-gradient(900px 600px at 90% 15%, color-mix(in oklab, var(--accent2) 24%, transparent), transparent 55%),
     radial-gradient(900px 650px at 20% 90%, color-mix(in oklab, var(--accent3) 18%, transparent), transparent 55%),
     var(--bg);
-
   transition: background .6s ease;
 }
 
@@ -66,24 +64,13 @@ header{
 }
 
 .brand{min-width:280px;}
-.brand .t{
-  font-size:20px;
-  font-weight:900;
-  letter-spacing:1.4px;
-}
-.brand .s{
-  margin-top:6px;
-  color:var(--muted);
-  font-size:13px;
-}
+.brand .t{ font-size:20px; font-weight:900; letter-spacing:1.4px; }
+.brand .s{ margin-top:6px; color:var(--muted); font-size:13px; }
 .brand .s b{ color:var(--text); }
 
 nav{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:flex-end;
+  display:flex; gap:10px; flex-wrap:wrap;
+  align-items:center; justify-content:flex-end;
 }
 
 .tabbtn{
@@ -133,33 +120,17 @@ nav{
   box-shadow: var(--shadow);
 }
 
-.panel h2{
-  margin: 0 0 8px;
-  font-size: 15px;
-  letter-spacing:.6px;
-}
-
-.hint{
-  color:var(--muted);
-  font-size:13px;
-  margin-top:0;
-}
+.panel h2{ margin: 0 0 8px; font-size: 15px; letter-spacing:.6px; }
+.hint{ color:var(--muted); font-size:13px; margin-top:0; }
 
 .row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  flex-wrap:wrap;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; flex-wrap:wrap;
 }
 
 .toggle{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  color:var(--muted);
-  font-size:12px;
-  user-select:none;
+  display:flex; align-items:center; gap:8px;
+  color:var(--muted); font-size:12px; user-select:none;
 }
 .toggle input{ transform: translateY(1px); }
 
@@ -209,30 +180,11 @@ select{
   margin-top:12px;
 }
 
-.jp{
-  font-size:22px;
-  font-weight:900;
-  letter-spacing:.5px;
-  color:var(--accent2);
-}
-.hira{
-  margin-top:6px;
-  color:var(--muted);
-  font-size:13px;
-}
-.mean{
-  margin-top:8px;
-  font-size:14px;
-  color:var(--text);
-  font-weight:600;
-}
+.jp{ font-size:22px; font-weight:900; letter-spacing:.5px; color:var(--accent2); }
+.hira{ margin-top:6px; color:var(--muted); font-size:13px; }
+.mean{ margin-top:8px; font-size:14px; color:var(--text); font-weight:600; }
 
-.badges{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-top:10px;
-}
+.badges{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
 .badge{
   font-size:11px;
   border:1px solid var(--border);
@@ -272,16 +224,8 @@ select{
   transform: translateY(-1px);
   border-color: color-mix(in oklab, var(--accent2) 35%, transparent);
 }
-.kanjiitem .k{
-  font-size:28px;
-  font-weight:900;
-  color:var(--accent2);
-}
-.kanjiitem .lvl{
-  margin-top:6px;
-  font-size:11px;
-  color:var(--muted);
-}
+.kanjiitem .k{ font-size:28px; font-weight:900; color:var(--accent2); }
+.kanjiitem .lvl{ margin-top:6px; font-size:11px; color:var(--muted); }
 .kanjiitem .lvl b{ color:var(--text); }
 
 .strokeBox{
@@ -292,11 +236,8 @@ select{
   background: rgba(255,255,255,.04);
 }
 .strokeHead{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding:10px 12px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; padding:10px 12px;
   border-bottom:1px solid rgba(255,255,255,.08);
 }
 .strokeHead .t{ font-size:13px; color: var(--muted); }
@@ -319,10 +260,7 @@ hr.sep{
   border-top:1px solid rgba(255,255,255,.08);
   margin:14px 0;
 }
-.small{
-  color:var(--muted);
-  font-size:13px;
-}
+.small{ color:var(--muted); font-size:13px; }
 .small b{ color:var(--text); }
 
 .footer{
@@ -396,7 +334,7 @@ hr.sep{
   transition: width .12s linear;
 }
 
-/* flash visual quando acerta/erra */
+/* flash (acerto/erro) */
 .flash{
   position: fixed;
   inset: 0;
@@ -423,7 +361,7 @@ hr.sep{
     <div class="brand">
       <div class="t">ヴァンパイア全知全能</div>
       <div class="s">
-        Kanji N5 (por enquanto) + Jogo inteligente <b>(muda de cor conforme desempenho)</b>
+        Kanji N5 + Jogo inteligente <b>(stroke order desenhando automático)</b>
       </div>
     </div>
 
@@ -441,7 +379,7 @@ hr.sep{
     <div class="grid">
       <div class="panel">
         <h2>Kanji — N5 (ordem completa)</h2>
-        <p class="hint">Clique num kanji: vê leitura/significado + stroke order. Depois treina no Jogo.</p>
+        <p class="hint">Clique em um kanji: mostra leitura + significado principal + animação dos traços.</p>
         <div class="kanjigrid" id="kanjigrid"></div>
       </div>
 
@@ -457,8 +395,15 @@ hr.sep{
 
           <div class="strokeBox">
             <div class="strokeHead">
-              <div class="t">Ordem dos traços (Stroke order)</div>
-              <div class="btn" id="kdReloadStroke">Recarregar</div>
+              <div class="t">Ordem dos traços (desenhando)</div>
+              <div class="row">
+                <div class="btn" id="kdReplay">Repetir</div>
+                <select id="kdSpeed" title="Velocidade do desenho">
+                  <option value="0.7">Rápido</option>
+                  <option value="1" selected>Normal</option>
+                  <option value="1.35">Lento</option>
+                </select>
+              </div>
             </div>
             <div class="strokeBody" id="kdStroke"></div>
             <div class="strokeNote">Carregado online (KanjiVG). Se falhar: Ctrl+F5.</div>
@@ -484,13 +429,17 @@ hr.sep{
         <div class="row">
           <div>
             <h2>Jogo — múltipla escolha + timer</h2>
-            <p class="hint">Acerta 2/2 (Leitura + Significado). O tema fica mais “verde” conforme você melhora.</p>
+            <p class="hint">Acerta 2/2 (Leitura + Significado principal). Avanço automático.</p>
           </div>
 
           <div class="row">
-            <label class="toggle" title="Repete mais os kanji que você erra (melhor fixação).">
+            <label class="toggle" title="Repete mais os kanji que você erra (fixação rápida).">
               <input type="checkbox" id="quizSmart" checked />
               modo inteligente
+            </label>
+            <label class="toggle" title="Quando ligado, o timer reinicia automaticamente a cada questão.">
+              <input type="checkbox" id="quizAuto" checked />
+              auto-run
             </label>
           </div>
         </div>
@@ -533,7 +482,7 @@ hr.sep{
             </div>
 
             <div class="mcBox">
-              <h3>Significados (PT-BR) (escolha 1)</h3>
+              <h3>Significado principal (PT-BR) (escolha 1)</h3>
               <div class="choiceList" id="meaningChoices"></div>
             </div>
           </div>
@@ -544,8 +493,15 @@ hr.sep{
 
             <div class="strokeBox" style="margin-top:12px;">
               <div class="strokeHead">
-                <div class="t">Ordem dos traços (Stroke order)</div>
-                <div class="btn" id="quizReloadStroke">Recarregar</div>
+                <div class="t">Ordem dos traços (desenhando)</div>
+                <div class="row">
+                  <div class="btn" id="quizReplay">Repetir</div>
+                  <select id="quizSpeed" title="Velocidade do desenho">
+                    <option value="0.7">Rápido</option>
+                    <option value="1" selected>Normal</option>
+                    <option value="1.35">Lento</option>
+                  </select>
+                </div>
               </div>
               <div class="strokeBody" id="quizStroke"></div>
               <div class="strokeNote">Carregado online (KanjiVG).</div>
@@ -556,7 +512,7 @@ hr.sep{
 
       <div class="panel">
         <h2>Ranking + Estatísticas (local)</h2>
-        <p class="hint">Salva no seu navegador (localStorage). Se limpar cache, some.</p>
+        <p class="hint">Salva no seu navegador (localStorage).</p>
 
         <div class="card">
           <div class="mean">🏆 Melhores marcas</div>
@@ -568,16 +524,16 @@ hr.sep{
 
           <hr class="sep">
           <div class="row">
-            <div class="btn danger" id="resetHistory">Resetar histórico (ranking/erros)</div>
+            <div class="btn danger" id="resetHistory">Resetar histórico</div>
             <div class="btn primary" id="goKanji">Voltar ao Kanji</div>
           </div>
 
           <hr class="sep">
           <div class="small">
-            <b>Como o “mood” funciona:</b><br>
-            • Ele usa seus últimos resultados (janela de 12).<br>
-            • Mais acertos = tema mais verde / menos = mais vermelho.<br>
-            • Cada acerto/erro dá um flash visual (verde/vermelho).
+            <b>Otimização do jogo:</b><br>
+            • Opções sempre distintas (sem repetir texto).<br>
+            • Timer nunca duplica (1 interval ativo).<br>
+            • Avanço automático após correção/timeout.
           </div>
         </div>
       </div>
@@ -589,93 +545,93 @@ hr.sep{
 
 <script>
 /* =========================
-   DADOS (N5)
+   DADOS (N5) — significados principais (curtos)
    ========================= */
 const KANJI_ORDER_N5 = [
   "一","七","万","三","上","下","中","九","二","五","人","今","休","何","先","入","八","六","円","出","分","前","北","十","千","午","半","南","友","右","名","四","国","土","外","大","天","女","子","学","小","山","川","左","年","後","日","時","書","月","木","本","来","東","校","母","毎","気","水","火","父","生","男","白","百","聞","行","西","見","話","語","読","車","金","長","間","雨","電","食","高"
 ];
 
 const KANJI_INFO = {
-  "一":{lvl:"N5", readings:["いち","ひと"], meanings:["um","1"]},
-  "七":{lvl:"N5", readings:["しち","なな"], meanings:["sete","7"]},
-  "万":{lvl:"N5", readings:["まん"], meanings:["dez mil","10000","10 mil"]},
-  "三":{lvl:"N5", readings:["さん","みっ"], meanings:["três","3"]},
-  "上":{lvl:"N5", readings:["じょう","うえ","あ"], meanings:["cima","acima","superior"]},
-  "下":{lvl:"N5", readings:["か","した","さ"], meanings:["baixo","abaixo","inferior"]},
-  "中":{lvl:"N5", readings:["ちゅう","なか"], meanings:["meio","dentro","centro"]},
-  "九":{lvl:"N5", readings:["きゅう","ここの"], meanings:["nove","9"]},
-  "二":{lvl:"N5", readings:["に","ふた"], meanings:["dois","2"]},
-  "五":{lvl:"N5", readings:["ご","いつ"], meanings:["cinco","5"]},
-  "人":{lvl:"N5", readings:["じん","にん","ひと"], meanings:["pessoa","gente","humano"]},
-  "今":{lvl:"N5", readings:["こん","いま"], meanings:["agora","atualmente"]},
-  "休":{lvl:"N5", readings:["きゅう","やす"], meanings:["descansar","folga","feriado","pausa"]},
-  "何":{lvl:"N5", readings:["なん","なに"], meanings:["o que","qual"]},
-  "先":{lvl:"N5", readings:["せん","さき"], meanings:["antes","anterior","frente","ponta"]},
-  "入":{lvl:"N5", readings:["にゅう","い"], meanings:["entrar","entrada","inserir"]},
-  "八":{lvl:"N5", readings:["はち","や"], meanings:["oito","8"]},
-  "六":{lvl:"N5", readings:["ろく","む"], meanings:["seis","6"]},
-  "円":{lvl:"N5", readings:["えん"], meanings:["iene","yen","círculo"]},
-  "出":{lvl:"N5", readings:["しゅつ","で","だ"], meanings:["sair","saída","aparecer","tirar"]},
-  "分":{lvl:"N5", readings:["ぶん","ふん","わ"], meanings:["minuto","parte","entender"]},
-  "前":{lvl:"N5", readings:["ぜん","まえ"], meanings:["antes","frente","anterior"]},
-  "北":{lvl:"N5", readings:["ほく","きた"], meanings:["norte"]},
-  "十":{lvl:"N5", readings:["じゅう","とお"], meanings:["dez","10"]},
-  "千":{lvl:"N5", readings:["せん","ち"], meanings:["mil","1000"]},
-  "午":{lvl:"N5", readings:["ご"], meanings:["meio-dia","am/pm"]},
-  "半":{lvl:"N5", readings:["はん"], meanings:["metade","meia"]},
-  "南":{lvl:"N5", readings:["なん","みなみ"], meanings:["sul"]},
-  "友":{lvl:"N5", readings:["ゆう","とも"], meanings:["amigo"]},
-  "右":{lvl:"N5", readings:["う","みぎ"], meanings:["direita"]},
-  "名":{lvl:"N5", readings:["めい","な"], meanings:["nome","fama"]},
-  "四":{lvl:"N5", readings:["し","よん","よ"], meanings:["quatro","4"]},
-  "国":{lvl:"N5", readings:["こく","くに"], meanings:["país","nação"]},
-  "土":{lvl:"N5", readings:["ど","つち"], meanings:["terra","solo","sábado"]},
-  "外":{lvl:"N5", readings:["がい","そと","はず"], meanings:["fora","exterior"]},
-  "大":{lvl:"N5", readings:["だい","おお"], meanings:["grande"]},
-  "天":{lvl:"N5", readings:["てん","あま"], meanings:["céu"]},
-  "女":{lvl:"N5", readings:["じょ","おんな"], meanings:["mulher","feminino"]},
-  "子":{lvl:"N5", readings:["し","こ"], meanings:["criança","filho"]},
-  "学":{lvl:"N5", readings:["がく","まな"], meanings:["estudo","aprender","escola"]},
-  "小":{lvl:"N5", readings:["しょう","ちい"], meanings:["pequeno"]},
-  "山":{lvl:"N5", readings:["さん","やま"], meanings:["montanha"]},
-  "川":{lvl:"N5", readings:["せん","かわ"], meanings:["rio"]},
-  "左":{lvl:"N5", readings:["さ","ひだり"], meanings:["esquerda"]},
-  "年":{lvl:"N5", readings:["ねん","とし"], meanings:["ano"]},
-  "後":{lvl:"N5", readings:["ご","のち","うし"], meanings:["depois","atrás"]},
-  "日":{lvl:"N5", readings:["にち","じつ","ひ"], meanings:["dia","sol"]},
-  "時":{lvl:"N5", readings:["じ","とき"], meanings:["hora","tempo"]},
-  "書":{lvl:"N5", readings:["しょ","か"], meanings:["escrever","livro"]},
-  "月":{lvl:"N5", readings:["げつ","がつ","つき"], meanings:["mês","lua"]},
-  "木":{lvl:"N5", readings:["もく","ぼく","き"], meanings:["árvore","madeira"]},
-  "本":{lvl:"N5", readings:["ほん","もと"], meanings:["livro","origem"]},
-  "来":{lvl:"N5", readings:["らい","く","こ"], meanings:["vir","próximo"]},
-  "東":{lvl:"N5", readings:["とう","ひがし"], meanings:["leste"]},
-  "校":{lvl:"N5", readings:["こう"], meanings:["escola"]},
-  "母":{lvl:"N5", readings:["ぼ","はは"], meanings:["mãe"]},
-  "毎":{lvl:"N5", readings:["まい"], meanings:["todo","cada"]},
-  "気":{lvl:"N5", readings:["き","け"], meanings:["energia","ar","espírito","clima","humor"]},
-  "水":{lvl:"N5", readings:["すい","みず"], meanings:["água","quarta"]},
-  "火":{lvl:"N5", readings:["か","ひ"], meanings:["fogo","terça"]},
-  "父":{lvl:"N5", readings:["ふ","ちち"], meanings:["pai"]},
-  "生":{lvl:"N5", readings:["せい","しょう","い","う","なま"], meanings:["vida","nascer","cru","aluno"]},
-  "男":{lvl:"N5", readings:["だん","おとこ"], meanings:["homem","masculino"]},
-  "白":{lvl:"N5", readings:["はく","しろ"], meanings:["branco"]},
-  "百":{lvl:"N5", readings:["ひゃく"], meanings:["cem","100"]},
-  "聞":{lvl:"N5", readings:["ぶん","もん","き"], meanings:["ouvir","perguntar"]},
-  "行":{lvl:"N5", readings:["こう","ぎょう","い","ゆ"], meanings:["ir","linha","fazer"]},
-  "西":{lvl:"N5", readings:["せい","にし"], meanings:["oeste"]},
-  "見":{lvl:"N5", readings:["けん","み"], meanings:["ver","olhar","assistir"]},
-  "話":{lvl:"N5", readings:["わ","はな"], meanings:["falar","conversa","história"]},
-  "語":{lvl:"N5", readings:["ご","かた"], meanings:["língua","idioma","palavra"]},
-  "読":{lvl:"N5", readings:["どく","よ"], meanings:["ler"]},
-  "車":{lvl:"N5", readings:["しゃ","くるま"], meanings:["carro","veículo"]},
-  "金":{lvl:"N5", readings:["きん","かね"], meanings:["dinheiro","ouro","sexta"]},
-  "長":{lvl:"N5", readings:["ちょう","なが"], meanings:["longo","chefe"]},
-  "間":{lvl:"N5", readings:["かん","けん","あいだ","ま"], meanings:["entre","intervalo","tempo"]},
-  "雨":{lvl:"N5", readings:["う","あめ"], meanings:["chuva"]},
-  "電":{lvl:"N5", readings:["でん"], meanings:["eletricidade"]},
-  "食":{lvl:"N5", readings:["しょく","た"], meanings:["comer","comida"]},
-  "高":{lvl:"N5", readings:["こう","たか"], meanings:["alto","caro"]}
+  "一":{readings:["いち","ひと"], meaning:"um"},
+  "七":{readings:["しち","なな"], meaning:"sete"},
+  "万":{readings:["まん"], meaning:"dez mil"},
+  "三":{readings:["さん","みっ"], meaning:"três"},
+  "上":{readings:["うえ","じょう"], meaning:"cima"},
+  "下":{readings:["した","か"], meaning:"baixo"},
+  "中":{readings:["なか","ちゅう"], meaning:"meio"},
+  "九":{readings:["きゅう","ここの"], meaning:"nove"},
+  "二":{readings:["に","ふた"], meaning:"dois"},
+  "五":{readings:["ご","いつ"], meaning:"cinco"},
+  "人":{readings:["ひと","にん"], meaning:"pessoa"},
+  "今":{readings:["いま","こん"], meaning:"agora"},
+  "休":{readings:["やす","きゅう"], meaning:"descansar"},
+  "何":{readings:["なに","なん"], meaning:"o que"},
+  "先":{readings:["さき","せん"], meaning:"antes"},
+  "入":{readings:["い","にゅう"], meaning:"entrar"},
+  "八":{readings:["はち","や"], meaning:"oito"},
+  "六":{readings:["ろく","む"], meaning:"seis"},
+  "円":{readings:["えん"], meaning:"iene"},
+  "出":{readings:["で","しゅつ"], meaning:"sair"},
+  "分":{readings:["ふん","ぶん"], meaning:"minuto"},
+  "前":{readings:["まえ","ぜん"], meaning:"antes"},
+  "北":{readings:["きた","ほく"], meaning:"norte"},
+  "十":{readings:["じゅう","とお"], meaning:"dez"},
+  "千":{readings:["せん","ち"], meaning:"mil"},
+  "午":{readings:["ご"], meaning:"meio-dia"},
+  "半":{readings:["はん"], meaning:"metade"},
+  "南":{readings:["みなみ","なん"], meaning:"sul"},
+  "友":{readings:["とも","ゆう"], meaning:"amigo"},
+  "右":{readings:["みぎ","う"], meaning:"direita"},
+  "名":{readings:["な","めい"], meaning:"nome"},
+  "四":{readings:["よん","し"], meaning:"quatro"},
+  "国":{readings:["くに","こく"], meaning:"país"},
+  "土":{readings:["つち","ど"], meaning:"terra"},
+  "外":{readings:["そと","がい"], meaning:"fora"},
+  "大":{readings:["おお","だい"], meaning:"grande"},
+  "天":{readings:["てん","あま"], meaning:"céu"},
+  "女":{readings:["おんな","じょ"], meaning:"mulher"},
+  "子":{readings:["こ","し"], meaning:"criança"},
+  "学":{readings:["まな","がく"], meaning:"estudar"},
+  "小":{readings:["ちい","しょう"], meaning:"pequeno"},
+  "山":{readings:["やま","さん"], meaning:"montanha"},
+  "川":{readings:["かわ","せん"], meaning:"rio"},
+  "左":{readings:["ひだり","さ"], meaning:"esquerda"},
+  "年":{readings:["とし","ねん"], meaning:"ano"},
+  "後":{readings:["あと","ご"], meaning:"depois"},
+  "日":{readings:["ひ","にち"], meaning:"dia"},
+  "時":{readings:["とき","じ"], meaning:"hora"},
+  "書":{readings:["か","しょ"], meaning:"escrever"},
+  "月":{readings:["つき","げつ"], meaning:"mês"},
+  "木":{readings:["き","もく"], meaning:"árvore"},
+  "本":{readings:["ほん","もと"], meaning:"livro"},
+  "来":{readings:["く","らい"], meaning:"vir"},
+  "東":{readings:["ひがし","とう"], meaning:"leste"},
+  "校":{readings:["こう"], meaning:"escola"},
+  "母":{readings:["はは","ぼ"], meaning:"mãe"},
+  "毎":{readings:["まい"], meaning:"todo"},
+  "気":{readings:["き"], meaning:"energia"},
+  "水":{readings:["みず","すい"], meaning:"água"},
+  "火":{readings:["ひ","か"], meaning:"fogo"},
+  "父":{readings:["ちち","ふ"], meaning:"pai"},
+  "生":{readings:["い","せい"], meaning:"vida"},
+  "男":{readings:["おとこ","だん"], meaning:"homem"},
+  "白":{readings:["しろ","はく"], meaning:"branco"},
+  "百":{readings:["ひゃく"], meaning:"cem"},
+  "聞":{readings:["き","ぶん"], meaning:"ouvir"},
+  "行":{readings:["い","こう"], meaning:"ir"},
+  "西":{readings:["にし","せい"], meaning:"oeste"},
+  "見":{readings:["み","けん"], meaning:"ver"},
+  "話":{readings:["はな","わ"], meaning:"falar"},
+  "語":{readings:["ご"], meaning:"idioma"},
+  "読":{readings:["よ","どく"], meaning:"ler"},
+  "車":{readings:["くるま","しゃ"], meaning:"carro"},
+  "金":{readings:["かね","きん"], meaning:"dinheiro"},
+  "長":{readings:["なが","ちょう"], meaning:"longo"},
+  "間":{readings:["あいだ","かん"], meaning:"entre"},
+  "雨":{readings:["あめ","う"], meaning:"chuva"},
+  "電":{readings:["でん"], meaning:"eletricidade"},
+  "食":{readings:["た","しょく"], meaning:"comer"},
+  "高":{readings:["たか","こう"], meaning:"alto"}
 };
 
 /* =========================
@@ -696,8 +652,9 @@ function uniqByText(opts){
   const seen = new Set();
   const out = [];
   for(const o of opts){
-    if(seen.has(o.text)) continue;
-    seen.add(o.text);
+    const key = (o.text || "").trim();
+    if(!key || seen.has(key)) continue;
+    seen.add(key);
     out.push(o);
   }
   return out;
@@ -706,7 +663,6 @@ function uniqByText(opts){
 function flash(type){
   const f = $("flash");
   f.className = "flash " + type;
-  // reinicia animação
   void f.offsetWidth;
   f.classList.add("on");
   setTimeout(()=>f.classList.remove("on"), 560);
@@ -730,18 +686,88 @@ tabs.kanji.addEventListener("click", ()=>openTab("kanji"));
 tabs.quiz.addEventListener("click", ()=>openTab("quiz"));
 
 /* =========================
-   STROKE ORDER (KanjiVG) + CACHE
+   STROKE ORDER (KanjiVG) + CACHE + ANIMAÇÃO (DESENHANDO)
    ========================= */
-const svgCache = new Map();
+const svgCache = new Map();      // kanji -> svgText
+const strokeAnimState = new WeakMap(); // svg -> {timeouts:[]}
 
 function codepointHex5(ch){
   return ch.codePointAt(0).toString(16).padStart(5,"0");
 }
 
-async function loadKanjiStrokeSVG(kanji, targetEl){
+function clearSVGAnimation(svg){
+  const st = strokeAnimState.get(svg);
+  if(st?.timeouts?.length){
+    st.timeouts.forEach(t=>clearTimeout(t));
+  }
+  strokeAnimState.set(svg, {timeouts:[]});
+}
+
+function styleAndPreparePaths(svg){
+  // pega apenas paths que parecem strokes (KanjiVG)
+  // KanjiVG costuma ter muitos <path>. A ordem no DOM é a ordem de escrita.
+  const paths = Array.from(svg.querySelectorAll("path"));
+  if(!paths.length) return {paths:[]};
+
+  // reset básico de estilo e deixa desenhável
+  for(const p of paths){
+    // alguns paths podem ter fill; vamos forçar estilo de desenho
+    p.style.fill = "none";
+    p.style.stroke = "var(--accent2)";
+    p.style.strokeWidth = "3.2";
+    p.style.strokeLinecap = "round";
+    p.style.strokeLinejoin = "round";
+    p.style.opacity = "1";
+    p.style.transition = "none";
+  }
+  return {paths};
+}
+
+function animateStrokeOrder(svg, speed=1){
+  if(!svg) return;
+
+  clearSVGAnimation(svg);
+
+  const {paths} = styleAndPreparePaths(svg);
+  if(!paths.length) return;
+
+  // prepara dash
+  const lengths = paths.map(p=>{
+    let len = 0;
+    try{ len = p.getTotalLength(); }catch{ len = 150; }
+    p.style.strokeDasharray = String(len);
+    p.style.strokeDashoffset = String(len);
+    return len;
+  });
+
+  // anima sequencialmente
+  const timeouts = [];
+  let cursor = 0;
+
+  for(let i=0;i<paths.length;i++){
+    const p = paths[i];
+    const len = lengths[i];
+
+    // duração baseada no comprimento (mais natural)
+    const dur = Math.max(220, Math.min(900, (len * 2.2))) * speed;
+
+    const t = setTimeout(()=>{
+      p.style.transition = `stroke-dashoffset ${dur}ms linear`;
+      p.style.strokeDashoffset = "0";
+    }, cursor);
+
+    timeouts.push(t);
+    cursor += dur + 90 * speed; // pequeno gap entre traços
+  }
+
+  strokeAnimState.set(svg, {timeouts});
+}
+
+async function loadKanjiSVGInto(kanji, targetEl){
+  // retorna o SVG element (depois de inserido)
   if(svgCache.has(kanji)){
     targetEl.innerHTML = svgCache.get(kanji);
-    return;
+    return targetEl.querySelector("svg");
   }
 
   const hex = codepointHex5(kanji);
@@ -753,7 +779,6 @@ async function loadKanjiStrokeSVG(kanji, targetEl){
     if(!res.ok) throw new Error("HTTP "+res.status);
     const svgText = await res.text();
 
-    // limpa width/height e xml header pra responsivo
     const cleaned = svgText
       .replace(/width="[^"]*"/g,'')
       .replace(/height="[^"]*"/g,'')
@@ -761,8 +786,10 @@ async function loadKanjiStrokeSVG(kanji, targetEl){
 
     svgCache.set(kanji, cleaned);
     targetEl.innerHTML = cleaned;
+    return targetEl.querySelector("svg");
   }catch{
-    targetEl.innerHTML = `<div class="small">Falha ao carregar agora. Ctrl+F5 e tente novamente.</div>`;
+    targetEl.innerHTML = `<div class="small">Falha ao carregar. Ctrl+F5 e tente novamente.</div>`;
+    return null;
   }
 }
 
@@ -777,10 +804,12 @@ const kdReadings = $("kdReadings");
 const kdMean = $("kdMean");
 const kdBadges = $("kdBadges");
 const kdStroke = $("kdStroke");
+const kdSpeed = $("kdSpeed");
 let selectedKanji = null;
+let kdSvgEl = null;
 
 function renderKanjiGrid(){
-  if(kanjigrid.dataset.rendered === "1") return; // otimiza: só renderiza 1x
+  if(kanjigrid.dataset.rendered === "1") return;
   kanjigrid.dataset.rendered = "1";
 
   const frag = document.createDocumentFragment();
@@ -794,7 +823,7 @@ function renderKanjiGrid(){
   kanjigrid.appendChild(frag);
 }
 
-function showKanjiDetail(k){
+async function showKanjiDetail(k){
   selectedKanji = k;
   const info = KANJI_INFO[k];
 
@@ -802,15 +831,24 @@ function showKanjiDetail(k){
   kdBox.style.display="block";
 
   kdKanji.textContent = k;
-  kdReadings.textContent = `Leituras: ${info?.readings?.join(" / ") || "—"}`;
-  kdMean.textContent = `Significado (PT): ${info?.meanings?.join(" / ") || "—"}`;
+  kdReadings.textContent = `Leituras: ${(info?.readings || ["—"]).join(" / ")}`;
+  kdMean.textContent = `Significado principal (PT): ${info?.meaning || "—"}`;
   kdBadges.innerHTML = `<span class="badge n5">N5</span><span class="badge tag">kanji</span>`;
 
-  loadKanjiStrokeSVG(k, kdStroke);
+  kdSvgEl = await loadKanjiSVGInto(k, kdStroke);
+  const sp = Number(kdSpeed.value);
+  animateStrokeOrder(kdSvgEl, sp);
 }
 
-$("kdReloadStroke").addEventListener("click", ()=>{
-  if(selectedKanji) loadKanjiStrokeSVG(selectedKanji, kdStroke);
+$("kdReplay").addEventListener("click", ()=>{
+  if(!selectedKanji) return;
+  const sp = Number(kdSpeed.value);
+  animateStrokeOrder(kdSvgEl, sp);
+});
+kdSpeed.addEventListener("change", ()=>{
+  if(!selectedKanji) return;
+  const sp = Number(kdSpeed.value);
+  animateStrokeOrder(kdSvgEl, sp);
 });
 
 $("kdTrain").addEventListener("click", ()=>{
@@ -822,7 +860,7 @@ $("kdTrain").addEventListener("click", ()=>{
 /* =========================
    QUIZ: stats + mood
    ========================= */
-const LS_KEY = "vampire_znzn_kanji_quiz_v3";
+const LS_KEY = "vampire_znzn_kanji_quiz_v4";
 
 function defaultStats(){
   return {
@@ -831,11 +869,10 @@ function defaultStats(){
     bestScore: 0,
     totalCorrect: 0,
     totalWrong: 0,
-    perKanji: {},          // { "日": {c,w} }
-    recent: []             // últimos resultados (1/0), janela 12
+    perKanji: {},     // { "日": {c,w} }
+    recent: []        // últimos resultados (1/0), janela 12
   };
 }
-
 function loadStats(){
   try{
     const raw = localStorage.getItem(LS_KEY);
@@ -844,7 +881,6 @@ function loadStats(){
     return defaultStats();
   }
 }
-
 function saveStats(){
   try{ localStorage.setItem(LS_KEY, JSON.stringify(stats)); }catch{}
 }
@@ -854,30 +890,27 @@ let stats = loadStats();
 function ensurePerKanji(k){
   if(!stats.perKanji[k]) stats.perKanji[k] = {c:0,w:0};
 }
-
 function pushRecent(ok){
   stats.recent.push(ok ? 1 : 0);
   if(stats.recent.length > 12) stats.recent.shift();
 }
-
 function moodScore(){
   if(!stats.recent.length) return 0.5;
   const sum = stats.recent.reduce((a,b)=>a+b,0);
   return sum / stats.recent.length; // 0..1
 }
-
 function applyMood(){
-  const s = moodScore(); // 0..1
-  // hue 8 (vermelho) -> 135 (verde)
-  const hue = Math.round(8 + s * 127);
+  const s = moodScore();
+  const hue = Math.round(8 + s * 127); // vermelho -> verde
   document.documentElement.style.setProperty("--moodHue", String(hue));
   $("quizMoodText").textContent = `Mood: ${Math.round(s*100)}%`;
 }
 
 /* =========================
-   QUIZ: engine
+   QUIZ: engine otimizado
    ========================= */
 const quizSmart = $("quizSmart");
+const quizAuto = $("quizAuto");
 const quizKanji = $("quizKanji");
 const quizScoreEl = $("quizScore");
 const quizTimerText = $("quizTimerText");
@@ -889,23 +922,20 @@ const quizFeedback = $("quizFeedback");
 const quizFeedbackTitle = $("quizFeedbackTitle");
 const quizFeedbackDetail = $("quizFeedbackDetail");
 const quizStroke = $("quizStroke");
+const quizSpeed = $("quizSpeed");
 const bestStatsEl = $("bestStats");
 const worstKanjisEl = $("worstKanjis");
 
-$("quizReloadStroke").addEventListener("click", ()=>{
-  loadKanjiStrokeSVG(quizState.current, quizStroke);
-});
+let quizSvgEl = null;
 
-$("goKanji").addEventListener("click", ()=>{
-  openTab("kanji");
-});
+$("goKanji").addEventListener("click", ()=> openTab("kanji"));
 
 $("resetHistory").addEventListener("click", ()=>{
   stats = defaultStats();
   saveStats();
   updateRightPanel();
   applyMood();
-  flash("bad"); // feedback visual de reset
+  flash("bad");
 });
 
 const quizState = {
@@ -923,6 +953,8 @@ const quizState = {
   answeredMeaning: false,
   okReading: false,
   okMeaning: false,
+
+  lastPick: null,     // evita repetição imediata
 };
 
 function updateScoreUI(){
@@ -931,7 +963,6 @@ function updateScoreUI(){
 }
 
 function updateRightPanel(){
-  // bests
   const totalGlobal = stats.totalCorrect + stats.totalWrong;
   const accGlobal = totalGlobal ? (stats.totalCorrect / totalGlobal) : 0;
 
@@ -943,7 +974,6 @@ function updateRightPanel(){
       (C:${stats.totalCorrect} / E:${stats.totalWrong})
   `;
 
-  // worst list
   const arr = Object.entries(stats.perKanji).map(([k,v])=>{
     const total = v.c + v.w;
     const err = total ? (v.w / total) : 0;
@@ -972,32 +1002,41 @@ function updateBests(){
   stats.bestScore = Math.max(stats.bestScore, scoreSession);
 }
 
-function makeReadingText(k){
+/* textos */
+function readingText(k){
   return (KANJI_INFO[k]?.readings || ["—"]).join(" / ");
 }
-function makeMeaningText(k){
-  return (KANJI_INFO[k]?.meanings || ["—"]).join(" / ");
+function meaningText(k){
+  return (KANJI_INFO[k]?.meaning || "—");
 }
 
+/* opções (sempre diferentes) */
 function buildChoices(kind, correctKanji){
   const pool = KANJI_ORDER_N5.filter(k => k !== correctKanji);
-  const distractors = shuffle(pool).slice(0, 12);
+  const sample = shuffle(pool).slice(0, 14);
 
-  const correctText = (kind==="reading") ? makeReadingText(correctKanji) : makeMeaningText(correctKanji);
-  const correct = { text: correctText, correct: true };
+  const correct = {
+    text: (kind==="reading") ? readingText(correctKanji) : meaningText(correctKanji),
+    correct: true
+  };
 
-  let opts = [correct, ...distractors.map(k=>{
-    const text = (kind==="reading") ? makeReadingText(k) : makeMeaningText(k);
-    return { text, correct:false };
+  let opts = [correct, ...sample.map(k=>{
+    return {
+      text: (kind==="reading") ? readingText(k) : meaningText(k),
+      correct:false
+    };
   })];
 
   opts = uniqByText(opts);
+
+  // garante que o correto está
   if(!opts.some(o=>o.correct)) opts.unshift(correct);
 
+  // garante 4
   opts = opts.slice(0,4);
   while(opts.length < 4){
     const k = pool[Math.floor(Math.random()*pool.length)];
-    const text = (kind==="reading") ? makeReadingText(k) : makeMeaningText(k);
+    const text = (kind==="reading") ? readingText(k) : meaningText(k);
     if(opts.some(o=>o.text===text)) continue;
     opts.push({text, correct:false});
   }
@@ -1025,11 +1064,9 @@ function renderChoiceButtons(targetEl, options, onPick){
     b.textContent = opt.text;
 
     b.addEventListener("click", ()=>{
-      // desabilita só esse bloco
       const btns = Array.from(targetEl.querySelectorAll(".choiceBtn"));
       btns.forEach(btn=> btn.disabled = true);
 
-      // pinta corretos
       btns.forEach((btn, idx)=>{
         if(options[idx].correct) btn.classList.add("correct");
       });
@@ -1044,14 +1081,15 @@ function renderChoiceButtons(targetEl, options, onPick){
   }
 }
 
+/* seleção inteligente (mais agressiva pro erro) */
 function weightedPick(pool){
-  // peso maior para mais erros / menos acertos
   let total = 0;
   const weights = pool.map(k=>{
     ensurePerKanji(k);
     const {c,w} = stats.perKanji[k];
-    const unseen = (c+w===0) ? 0.8 : 0;
-    const weight = Math.max(0.2, 1 + w*2.2 - c*0.35 + unseen);
+    const unseen = (c+w===0) ? 1.0 : 0;
+    // mais erro -> muito mais peso
+    const weight = Math.max(0.2, 1 + w*2.6 - c*0.30 + unseen);
     total += weight;
     return weight;
   });
@@ -1066,10 +1104,17 @@ function weightedPick(pool){
 
 function pickKanji(){
   const pool = KANJI_ORDER_N5;
-  return quizSmart.checked ? weightedPick(pool) : pool[Math.floor(Math.random()*pool.length)];
+  let k = quizSmart.checked ? weightedPick(pool) : pool[Math.floor(Math.random()*pool.length)];
+
+  // evita repetir o mesmo imediatamente (melhora “sensação” do jogo)
+  if(pool.length > 1 && k === quizState.lastPick){
+    k = pool[Math.floor(Math.random()*pool.length)];
+  }
+  quizState.lastPick = k;
+  return k;
 }
 
-function setQuestion(kanji, keepTimerRunning){
+async function setQuestion(kanji, keepTimerRunning){
   quizState.current = kanji;
   quizKanji.textContent = kanji;
 
@@ -1090,7 +1135,7 @@ function setQuestion(kanji, keepTimerRunning){
     evaluateIfComplete();
   });
 
-  // Timer
+  // timer: auto-run ou mantém estado
   if(quizState.running){
     startTimer(true);
   }else if(!keepTimerRunning){
@@ -1098,6 +1143,16 @@ function setQuestion(kanji, keepTimerRunning){
     quizState.timeTotalMs = seconds * 1000;
     quizState.timeLeftMs = quizState.timeTotalMs;
     updateTimerUI();
+  }else{
+    // se auto-run ligado, inicia sozinho
+    if(quizAuto.checked){
+      startTimer(true);
+    }else{
+      const seconds = Number(quizTime.value);
+      quizState.timeTotalMs = seconds * 1000;
+      quizState.timeLeftMs = quizState.timeTotalMs;
+      updateTimerUI();
+    }
   }
 }
 
@@ -1105,28 +1160,28 @@ function nextQuestion(){
   setQuestion(pickKanji(), true);
 }
 
-function showFeedback(scored, okAll){
+/* feedback + stroke desenhando (automático) */
+async function showFeedback(okAll, reason){
   const k = quizState.current;
   const info = KANJI_INFO[k];
-  const r = info ? info.readings.join(" / ") : "—";
-  const m = info ? info.meanings.join(" / ") : "—";
 
   quizFeedback.style.display = "block";
-  quizFeedbackTitle.innerHTML = scored
-    ? (okAll ? `✅ <b>Acertou!</b> (2/2)` : `❌ <b>Errou.</b>`)
-    : `👁️ <b>Revelado</b>`;
+  quizFeedbackTitle.innerHTML = okAll
+    ? `✅ <b>Acertou!</b> (2/2)`
+    : (reason === "timeout" ? `⏱️ <b>Tempo esgotado.</b>` : `❌ <b>Errou.</b>`);
 
   quizFeedbackDetail.innerHTML = `
     Kanji: <b>${k}</b><br>
-    Leituras: <b>${r}</b><br>
-    Significados: <b>${m}</b>
+    Leituras: <b>${(info?.readings || ["—"]).join(" / ")}</b><br>
+    Significado: <b>${info?.meaning || "—"}</b>
   `;
 
-  loadKanjiStrokeSVG(k, quizStroke);
+  quizSvgEl = await loadKanjiSVGInto(k, quizStroke);
+  animateStrokeOrder(quizSvgEl, Number(quizSpeed.value));
 }
 
+/* commit resultado (única fonte da verdade) */
 function commitResult(okAll, reason){
-  // reason: "answered" | "timeout"
   const k = quizState.current;
   ensurePerKanji(k);
 
@@ -1156,11 +1211,13 @@ function commitResult(okAll, reason){
   updateRightPanel();
   saveStats();
 
-  showFeedback(true, okAll);
-
   stopTimer();
-  // avança rápido
-  setTimeout(()=> nextQuestion(), 850);
+  disableAllChoices();
+
+  showFeedback(okAll, reason);
+
+  // avança automático
+  setTimeout(()=> nextQuestion(), 900);
 }
 
 function evaluateIfComplete(){
@@ -1170,12 +1227,11 @@ function evaluateIfComplete(){
 }
 
 /* =========================
-   TIMER (1 intervalo, nunca duplica)
+   TIMER (1 interval, nunca duplica)
    ========================= */
 function updateTimerUI(){
   const leftSec = Math.max(0, Math.ceil(quizState.timeLeftMs/1000));
   quizTimerText.textContent = `⏱️ ${leftSec}s`;
-
   const pct = quizState.timeTotalMs ? (quizState.timeLeftMs/quizState.timeTotalMs) : 0;
   timerBar.style.width = `${Math.max(0, Math.min(1, pct))*100}%`;
 }
@@ -1193,7 +1249,7 @@ function startTimer(reset){
   quizState.timeTotalMs = seconds*1000;
   if(reset) quizState.timeLeftMs = quizState.timeTotalMs;
 
-  stopTimer();          // mata qualquer loop anterior
+  stopTimer();
   quizState.running = true;
 
   quizState.timerId = setInterval(()=>{
@@ -1202,9 +1258,6 @@ function startTimer(reset){
 
     if(quizState.timeLeftMs <= 0){
       stopTimer();
-      disableAllChoices();
-
-      // timeout = erro (1 vez) e avança
       commitResult(false, "timeout");
     }
   }, 200);
@@ -1230,6 +1283,7 @@ $("quizReset").addEventListener("click", ()=>{
   flash("bad");
   nextQuestion();
 });
+
 quizTime.addEventListener("change", ()=>{
   if(quizState.running) startTimer(true);
   else{
@@ -1237,6 +1291,15 @@ quizTime.addEventListener("change", ()=>{
     quizState.timeLeftMs = quizState.timeTotalMs;
     updateTimerUI();
   }
+});
+
+$("quizReplay").addEventListener("click", ()=>{
+  if(!quizSvgEl) return;
+  animateStrokeOrder(quizSvgEl, Number(quizSpeed.value));
+});
+quizSpeed.addEventListener("change", ()=>{
+  if(!quizSvgEl) return;
+  animateStrokeOrder(quizSvgEl, Number(quizSpeed.value));
 });
 
 /* =========================
